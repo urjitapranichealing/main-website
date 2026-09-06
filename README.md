@@ -1,70 +1,91 @@
 # Urjita Yog ani Pranic Upchar Kendra — website
 
-Static site. No build step, no framework, no dependencies. Drop the folder on any host and it works.
+Mobile-first static site. No build step, no framework, no dependencies.
 
 ```
-index.html      Home
-about.html      Kshipra's story, credentials, lineage
-services.html   Healings + how a session works
-workshops.html  Course, free meditation, programmes
-contact.html    Locations + WhatsApp enquiry form
-styles.css      All styling
-app.js          Language toggle, Marathi dictionary, WhatsApp, nav, reveals
+index.html       Home
+about.html       Kshipra's story, credentials, lineage
+services.html    Healings + how a session works
+workshops.html   Course, free meditation, programmes
+contact.html     Locations + WhatsApp enquiry form
+policies.html    Privacy + Terms + Refund, one page
+styles.css       All styling (mobile-first)
+app.js           Language toggle, Marathi dictionary, counters, WhatsApp
+vercel.json      Clean URLs
+images/          Logo files — put your photos here too
 ```
 
-## Before it goes live — the replacements list
+## Deploy: GitHub → Vercel
 
-**1. Shop link.** Open `app.js`, line 7:
+1. Put **all these files at the root** of a GitHub repo — `index.html` at the top level, `images/` beside it. Push.
+2. Vercel → Add New → Project → import the repo.
+3. Framework Preset: **Other**. Leave Build Command and Output Directory blank.
+4. Deploy, then Settings → Domains to attach your domain.
+
+Filenames are case-sensitive on Vercel. Keep everything lowercase, including any images you add.
+
+## Before it goes live
+
+**1. Shop link.** `app.js`, line 7:
 ```js
 const SHOP_URL = 'https://your-shop-domain.com';
 ```
-Change it to the real domain. Every "Shop" link across all five pages updates automatically.
+Change it once; every "Shop" link across all six pages updates.
 
-**2. Photos.** Two placeholders are marked in the HTML with `<!-- REPLACE -->`:
-- `index.html` and `about.html` — Kshipra's portrait. Make a folder called `images`, drop in `kshipra.jpg`, then swap:
+**2. Kshipra's portrait.** Save it as `images/kshipra.jpg` (portrait orientation, roughly 4:5). In `index.html` and `about.html`, replace:
 ```html
-<div class="placeholder">…</div>
+<div class="placeholder" data-i18n="ph.portrait">…</div>
 ```
-for
+with:
 ```html
-<img src="images/kshipra.jpg" alt="Kshipra Lokare">
+<img src="/images/kshipra.jpg" alt="Kshipra Lokare">
 ```
-A portrait in portrait orientation (taller than wide, roughly 4:5) fits the frame best.
 
-**3. Testimonials.** `index.html`, three cards marked `<!-- REPLACE these three -->`. Real names and towns beat "Client, Mumbai" every time. Add the Marathi versions to `app.js` under keys `testi.1`, `testi.2`, `testi.3` and their `.1w / .2w / .3w` attributions.
+**3. Testimonial screenshots.** Save your WhatsApp screenshots as `images/testimonial-1.jpg` through `testimonial-5.jpg`. In `index.html`, replace each:
+```html
+<div class="drop" data-i18n="shot.1">Screenshot 1<br>add image here</div>
+```
+with:
+```html
+<img src="/images/testimonial-1.jpg" alt="Client message">
+```
+Then edit the caption below it (`First name · City`) and its Marathi twin in `app.js` under `who.1` … `who.5`.
 
-**4. Map pins.** `contact.html` — the two "Get directions" links currently search for the area name. Open Google Maps, find the exact pin for each centre, use Share → copy link, and paste it in.
+Screenshots display whole, never cropped. Crop out phone numbers and profile photos before uploading — those are other people's private details.
 
-**5. Workshop dates.** Currently the page routes people to WhatsApp for dates, which is deliberate — it captures a contact instead of just informing. If you'd rather publish a schedule, tell me and I'll add a dates block.
+**4. Map pins.** `contact.html` — the two "Get directions" links currently search by area name. Open Google Maps, find each centre, Share → copy link, paste in.
+
+## What changed in this version
+
+- **Mobile-first throughout.** Base CSS is phone; `@media (min-width: 640px)` and `(min-width: 900px)` scale up. Copy was tightened across every page so nothing reads long on a phone.
+- **Logo** in the header, and a light version in the footer. Both are transparent PNGs cut from your original file, so no white box on either background.
+- **Header on mobile** is logo → language toggle (full width) → menu. The "Book a Session" button appears only from 900px up; on mobile the sticky WhatsApp button and in-page CTAs carry that job.
+- **Hero animation** rebuilt: a seated figure, seven chakras firing root-to-crown in sequence, prana rising through the central channel, a cleansing sweep passing down the body, aura ripples radiating outward, two counter-rotating gold rings. Roughly twice as fast as before and far more visible. It sits below the headline, subheadline and buttons on mobile; beside them on desktop.
+- **Impact numbers** — 1,000+ / 125+ / 5,000+ — as a dark gold-gradient band that counts up when scrolled into view. On home and about.
+- **Testimonials** are a five-card horizontal swipe rail on mobile with snap points, becoming a grid on desktop.
+- **Footer on mobile**: logo and blurb across the top, Explore bottom-left, Visit us and Reach us stacked bottom-right.
+- **Policies page** added, linked from every footer.
+- The brown top strip is gone.
 
 ## The Marathi toggle
 
-English lives in the HTML. Marathi lives in `app.js` in the `MR` object, keyed to the `data-i18n` attributes. To change any Marathi wording, find the key and edit the string — nothing else needs touching.
+English lives in the HTML. Marathi lives in `app.js` in the `MR` object, keyed to the `data-i18n` attributes. 304 strings, all translated, including the full policies page. To reword anything in Marathi, find the key and edit the string.
 
-The choice persists in the visitor's browser, so a Marathi reader who comes back lands in Marathi.
+The visitor's choice is remembered in their browser, so a Marathi reader returns to Marathi.
 
 ## The enquiry form
 
-There is no backend, so nothing is stored on the site and there's nothing to maintain or secure. The form builds a pre-written message and opens WhatsApp with it ready to send. On mobile that's one tap. If you later want submissions in your inbox instead, Formspree or Google Forms can be wired in without changing the design.
+No backend. The form composes a message and opens WhatsApp with it ready to send — one tap on mobile — so nothing is stored on the site and there's nothing to secure or maintain.
 
-## Deploying to Vercel
+## Preview locally
 
-1. Put this folder in a GitHub repo and push it.
-2. vercel.com → **Add New → Project** → import the repo.
-3. Framework preset: **Other**. Leave build command and output directory empty.
-4. Deploy. It'll be live in under a minute.
-5. Project → **Settings → Domains** to point your domain at it.
-
-Any change you push to GitHub redeploys automatically.
-
-## To preview locally
-
-Open a terminal in this folder and run:
 ```
-python3 -m http.server 8000
+npx vercel dev
 ```
-Then visit `http://localhost:8000`. (Opening `index.html` by double-clicking also mostly works, but a local server is closer to the real thing.)
+mimics production exactly, clean URLs included. `python3 -m http.server 8000` also works but won't resolve `/about` without the `.html`.
 
-## A note on claims
+## Two things worth knowing
 
-Copy throughout is written as complementary wellbeing support, and a disclaimer sits in the footer of every page. Two claims from the printed flyer were deliberately left off the site: "healings for all types of physical and psychological ailments", and body sculpting / weight loss. Both are the kind of thing that invites regulatory attention and puts off exactly the educated, sceptical audience most likely to pay well. The psychology credential does far more persuasive work than any cure claim would.
+**The policies are a solid starting draft, not legal advice.** They're written to fit how you actually work and they cover the important ground — no cure claims, medical care continues, clear cancellation windows. Have a lawyer read them before you rely on them, and check the refund windows match what you're willing to honour. Two spots need your input: the governing jurisdiction currently says Thane district, and the products section assumes returns are handled by your shop domain.
+
+**Two claims from the printed flyer are deliberately absent:** "healings for all types of physical and psychological ailments", and body sculpting / weight loss. Both invite regulatory attention and put off the educated, sceptical audience most likely to pay well. The psychology credential and the impact numbers do far more persuasive work than a cure claim would.
