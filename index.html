@@ -13,10 +13,9 @@
 <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-
 <header class="site-header">
   <div class="wrap header-inner">
-    <a href="/" class="brand-logo"><img src="/images/urjita-logo.png" alt="Urjita Pranic Upchar Kendra"></a>
+    <a href="/" class="brand-logo"><img src="/images/urjita-logo.png" width="221" height="260" alt="Urjita"></a>
 
     <nav class="nav" id="nav">
       <a href="/" class="active" data-i18n="nav.home">Home</a>
@@ -33,22 +32,21 @@
         <button type="button" data-lang="mr">मराठी</button>
       </div>
       <a href="/contact" class="btn header-cta" data-i18n="cta.book">Book a Session</a>
-      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
     </div>
   </div>
 </header>
 <div class="nav-scrim" id="scrim"></div>
 
-<!-- ============ HERO ============ -->
 <section class="hero">
   <div class="wrap hero-inner">
     <div>
-      <div class="eyebrow" data-i18n="hero.eyebrow">MCKS Pranic Healing · Since 2014</div>
+      <div class="eyebrow" data-i18n="hero.eyebrow">MCKS Pranic Healing &middot; Since 2014</div>
       <h1>
         <span data-i18n="hero.t1">Your body already knows</span>
         <span class="ital" data-i18n="hero.t2">how to heal itself.</span>
       </h1>
-      <p class="lead" data-i18n="hero.lead">Wounds close. Fever passes. Rest restores you. Pranic Healing works with that same natural intelligence — no touch, no medicines — clearing and re-energising your energy body.</p>
+      <p class="lead" data-i18n="hero.lead">Wounds close. Fever passes. Rest restores you. Pranic Healing works with that same natural intelligence &mdash; no touch, no medicines &mdash; clearing and re-energising your energy body.</p>
       <div class="hero-cta">
         <a href="/contact" class="btn" data-i18n="cta.book2">Book a Healing Session</a>
         <a href="/workshops" class="btn btn-ghost" data-i18n="cta.free">Join the Free Meditation</a>
@@ -82,19 +80,15 @@
           </radialGradient>
         </defs>
 
-        <!-- breathing aura -->
         <ellipse class="aura-core" cx="200" cy="240" rx="168" ry="216" fill="url(#auraCore)"/>
 
-        <!-- ripples radiating outward -->
-        <circle class="aura-rip"           cx="200" cy="240" r="120" fill="none" stroke="#D94C8C" stroke-opacity="0.55" stroke-width="1.5"/>
+        <circle class="aura-rip"             cx="200" cy="240" r="120" fill="none" stroke="#D94C8C" stroke-opacity="0.55" stroke-width="1.5"/>
         <circle class="aura-rip aura-rip--2" cx="200" cy="240" r="120" fill="none" stroke="#BE8B2C" stroke-opacity="0.55" stroke-width="1.5"/>
         <circle class="aura-rip aura-rip--3" cx="200" cy="240" r="120" fill="none" stroke="#8E44AD" stroke-opacity="0.45" stroke-width="1.5"/>
 
-        <!-- rotating gold rings -->
         <circle class="dash-ring"     cx="200" cy="240" r="152" fill="none" stroke="url(#goldLine)" stroke-opacity="0.6" stroke-dasharray="2 12"/>
         <circle class="dash-ring--in" cx="200" cy="240" r="112" fill="none" stroke="url(#goldLine)" stroke-opacity="0.45" stroke-dasharray="1 8"/>
 
-        <!-- meditating figure -->
         <g fill="url(#figure)" stroke="#B2185F" stroke-opacity="0.22" stroke-width="1">
           <circle cx="200" cy="138" r="26"/>
           <path d="M176 192 C176 178 224 178 224 192 L238 296 L162 296 Z"/>
@@ -103,47 +97,35 @@
           <path d="M138 296 C112 314 108 344 136 352 L264 352 C292 344 288 314 262 296 Z"/>
         </g>
 
-        <!-- cleansing sweep -->
         <ellipse class="sweep-band" cx="200" cy="95" rx="120" ry="16" fill="url(#sweepGrad)"/>
 
-        <!-- central channel -->
         <line x1="200" y1="336" x2="200" y2="100" stroke="url(#channel)" stroke-width="2.5" stroke-linecap="round"/>
 
-        <!-- seven chakras: halo + core, staggered root to crown -->
         <g>
           <circle class="chakra-halo" cx="200" cy="336" r="9" fill="#C0392B" style="animation-delay:0s"/>
           <circle class="chakra-pt"   cx="200" cy="336" r="5.5" fill="#C0392B" style="animation-delay:0s"/>
-
           <circle class="chakra-halo" cx="200" cy="300" r="9" fill="#E67E22" style="animation-delay:.18s"/>
           <circle class="chakra-pt"   cx="200" cy="300" r="5.5" fill="#E67E22" style="animation-delay:.18s"/>
-
           <circle class="chakra-halo" cx="200" cy="268" r="9" fill="#D4AC0D" style="animation-delay:.36s"/>
           <circle class="chakra-pt"   cx="200" cy="268" r="5.5" fill="#D4AC0D" style="animation-delay:.36s"/>
-
           <circle class="chakra-halo" cx="200" cy="236" r="10" fill="#27AE60" style="animation-delay:.54s"/>
           <circle class="chakra-pt"   cx="200" cy="236" r="6.5" fill="#27AE60" style="animation-delay:.54s"/>
-
           <circle class="chakra-halo" cx="200" cy="182" r="9" fill="#2E86C1" style="animation-delay:.72s"/>
           <circle class="chakra-pt"   cx="200" cy="182" r="5.5" fill="#2E86C1" style="animation-delay:.72s"/>
-
           <circle class="chakra-halo" cx="200" cy="132" r="9" fill="#5B2C8D" style="animation-delay:.9s"/>
           <circle class="chakra-pt"   cx="200" cy="132" r="5.5" fill="#5B2C8D" style="animation-delay:.9s"/>
-
           <circle class="chakra-halo" cx="200" cy="100" r="11" fill="#8E44AD" style="animation-delay:1.08s"/>
           <circle class="chakra-pt"   cx="200" cy="100" r="7" fill="#8E44AD" style="animation-delay:1.08s"/>
         </g>
 
-        <!-- prana rising through the channel -->
         <g class="travel-pulse"><circle cx="200" cy="336" r="4.5" fill="#FFF6DC"/></g>
         <g class="travel-pulse" style="animation-delay:1.45s"><circle cx="200" cy="336" r="3.5" fill="#FFE7F2"/></g>
 
-        <!-- motes -->
         <circle class="mote" cx="146" cy="356" r="2.6" fill="#BE8B2C" style="animation-delay:0s"/>
         <circle class="mote" cx="254" cy="348" r="2.2" fill="#D94C8C" style="animation-delay:1.5s"/>
         <circle class="mote" cx="176" cy="360" r="2"   fill="#8E44AD" style="animation-delay:2.9s"/>
         <circle class="mote" cx="232" cy="356" r="2.8" fill="#BE8B2C" style="animation-delay:3.8s"/>
 
-        <!-- lotus base -->
         <path d="M200 396 c-24 0 -44 -13 -50 -28 c15 -8 35 -6 50 5 c15 -11 35 -13 50 -5 c-6 15 -26 28 -50 28 z" fill="#D94C8C" opacity="0.3"/>
         <path d="M200 400 c-40 0 -74 -15 -84 -32 c25 -11 59 -9 84 7 c25 -16 59 -18 84 -7 c-10 17 -44 32 -84 32 z" fill="#BE8B2C" opacity="0.16"/>
       </svg>
@@ -151,7 +133,6 @@
   </div>
 </section>
 
-<!-- ============ IMPACT NUMBERS ============ -->
 <div class="impact">
   <div class="wrap">
     <div class="impact-list">
@@ -171,18 +152,17 @@
         <span class="v" data-i18n="imp.3">Lives touched through meditation</span>
       </div>
     </div>
-    <p class="impact-credentials" data-i18n="imp.cred">Practising since 2014 · MCKS Certified Instructor · M.A. Counseling Psychology</p>
+    <p class="impact-credentials" data-i18n="imp.cred">Practising since 2014 &middot; MCKS Certified Instructor &middot; M.A. Counseling Psychology</p>
   </div>
 </div>
 
-<!-- ============ WHAT IS PRANIC HEALING ============ -->
 <section>
   <div class="wrap split reveal">
     <div>
       <div class="eyebrow"><span data-i18n="sec.what">What is Pranic Healing</span></div>
       <h2 class="serif-lg" data-i18n="what.h">An ancient science, made practical.</h2>
-      <p data-i18n="what.p1">Pranic Healing uses <em>prana</em> — life energy — to support physical, emotional and psychological wellbeing. No touch, no medicines: it works by cleansing and energising your energy field.</p>
-      <p data-i18n="what.p2">Indian Yoga Shastra calls this energy body the <em>Pranamaya Kosha</em>, and its vital centres the <em>chakras</em>. Balance those centres and the body's own capacity to restore harmony gets to work.</p>
+      <p data-i18n="what.p1">Pranic Healing uses <em>prana</em> &mdash; life energy &mdash; to support physical, emotional and psychological wellbeing. No touch, no medicines: it works by cleansing and energising your energy field.</p>
+      <p data-i18n="what.p2">Indian Yoga Shastra calls this energy body the <em>Pranamaya Kosha</em>, and its vital centres the <em>chakras</em>. Balance those centres and the body&rsquo;s own capacity to restore harmony gets to work.</p>
       <a href="/about" class="btn btn-gold" data-i18n="cta.know">Know more about Pranic Healing</a>
     </div>
     <div class="quote-card">
@@ -192,8 +172,7 @@
   </div>
 </section>
 
-<!-- ============ WHAT WE OFFER ============ -->
-<section class="benefits">
+<section class="dark">
   <div class="wrap reveal">
     <div class="eyebrow"><span data-i18n="sec.offer">What we offer</span></div>
     <h2 class="serif-lg" data-i18n="offer.h">Three ways to go ahead with us.</h2>
@@ -202,7 +181,7 @@
       <article class="pillar">
         <svg class="icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21s-7-4.35-7-9.5A3.5 3.5 0 0 1 12 9a3.5 3.5 0 0 1 7 2.5C19 16.65 12 21 12 21z"/><path d="M12 3v3M9.5 4.5l1 2M14.5 4.5l-1 2"/></svg>
         <h3 data-i18n="p1.h">Healings</h3>
-        <p data-i18n="p1.p">One-to-one sessions, in person or distant — for body, mind and circumstance.</p>
+        <p data-i18n="p1.p">One-to-one sessions, in person or distant &mdash; for body, mind and circumstance.</p>
         <ul>
           <li data-i18n="p1.l1">Physical &amp; psychological wellbeing</li>
           <li data-i18n="p1.l2">Relationship healing</li>
@@ -238,26 +217,47 @@
   </div>
 </section>
 
-<!-- ============ ABOUT TEASER ============ -->
+<!-- ============ THE TEAM ============ -->
 <section>
-  <div class="wrap split reverse reveal">
-    <div>
-      <div class="eyebrow"><span data-i18n="sec.healer">Your healer</span></div>
-      <h2 class="serif-lg" data-i18n="about.h">Kshipra Lokare</h2>
-      <p class="lead" data-i18n="about.role">MCKS Pranic Healing Instructor · Associate Certified Pranic Healer · Counseling Psychologist</p>
-      <p data-i18n="about.p1">Kshipra holds a Master's in Counseling Psychology and a PG Diploma in School Psychology. She met Pranic Healing in 2012 while studying psychology, and began practising in 2014.</p>
-      <p data-i18n="about.p2">Pranic Psychotherapy deepened her work with children and their parents — reaching where talk alone could not. Clinical training alongside energy healing shapes every session she gives.</p>
-      <a href="/about" class="btn btn-ghost" data-i18n="cta.story">Read her story</a>
-    </div>
-    <div class="portrait-frame">
-      <!-- REPLACE: <img src="/images/kshipra.jpg" alt="Kshipra Lokare"> -->
-      <div class="placeholder" data-i18n="ph.portrait">Portrait of Kshipra — add image here</div>
+  <div class="wrap reveal">
+    <div class="eyebrow"><span data-i18n="sec.team">The people behind Urjita</span></div>
+    <h2 class="serif-lg" data-i18n="team.h">Three practitioners, one practice.</h2>
+
+    <div class="team-grid">
+      <article class="member">
+        <div class="member-photo"><img src="/images/kshipra.jpg" width="760" height="950" alt="Kshipra Lokare" loading="lazy"></div>
+        <div class="member-body">
+          <h3 data-i18n="m1.name">Kshipra Lokare</h3>
+          <p class="role" data-i18n="m1.role">Pranic Healing Instructor &middot; Counseling Psychologist</p>
+          <p class="bio" data-i18n="m1.bio">Certified MCKS Instructor with a Master&rsquo;s in Counseling Psychology. Practising since 2014, with a specialisation in Pranic Psychotherapy for children and their parents.</p>
+          <a href="/about#kshipra" class="link-more" data-i18n="cta.profile">Read profile &rarr;</a>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="member-photo"><img src="/images/kshitij.jpg" width="760" height="950" alt="Kshitij Lokare" loading="lazy"></div>
+        <div class="member-body">
+          <h3 data-i18n="m2.name">Kshitij Lokare</h3>
+          <p class="role" data-i18n="m2.role">Pranic Healing Practitioner</p>
+          <p class="bio" data-i18n="m2.bio">Trained through Advanced Pranic Healing, Pranic Psychotherapy, Crystal Healing, Kriyashakti and Arhatic Yoga. Runs individual, group and online healing sessions.</p>
+          <a href="/about#kshitij" class="link-more" data-i18n="cta.profile">Read profile &rarr;</a>
+        </div>
+      </article>
+
+      <article class="member">
+        <div class="member-photo"><img src="/images/mrs-lokare.jpg" width="760" height="950" alt="Mrs. Lokare" loading="lazy"></div>
+        <div class="member-body">
+          <h3 data-i18n="m3.name">Mrs. Lokare</h3>
+          <p class="role" data-i18n="m3.role">Yoga Teacher &middot; Acupressure Therapist &middot; Healer</p>
+          <p class="bio" data-i18n="m3.bio">Twenty-five years of teaching yoga and practising acupressure, and a decade of energy healing. The steady hand behind Urjita&rsquo;s group practice.</p>
+          <a href="/about#mrs-lokare" class="link-more" data-i18n="cta.profile">Read profile &rarr;</a>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ============ BENEFITS ============ -->
-<section class="benefits">
+<section class="dark">
   <div class="wrap reveal">
     <div class="eyebrow"><span data-i18n="sec.benefits">What people notice</span></div>
     <h2 class="serif-lg" data-i18n="ben.h">Small shifts, felt early.</h2>
@@ -272,12 +272,49 @@
   </div>
 </section>
 
-<!-- ============ FREE MEDITATION ============ -->
+<section>
+  <div class="wrap reveal">
+    <div class="eyebrow"><span data-i18n="sec.words">In their words</span></div>
+    <h2 class="serif-lg" data-i18n="testi.h">What people say afterwards.</h2>
+    <p class="rail-hint" data-i18n="testi.hint">Swipe or scroll sideways to see more &rarr;</p>
+
+    <!--
+      TESTIMONIAL SCREENSHOTS
+      Save your WhatsApp screenshots into /images/ as
+      testimonial-1.jpg … testimonial-5.jpg, then replace each
+      <div class="drop">…</div> with:
+      <img src="/images/testimonial-1.jpg" alt="Client message" loading="lazy">
+    -->
+    <div class="rail">
+      <figure class="t-card">
+        <div class="shot"><div class="drop" data-i18n="shot.1">Screenshot 1<br>add image here</div></div>
+        <figcaption class="who" data-i18n="who.1">First name &middot; City</figcaption>
+      </figure>
+      <figure class="t-card">
+        <div class="shot"><div class="drop" data-i18n="shot.2">Screenshot 2<br>add image here</div></div>
+        <figcaption class="who" data-i18n="who.2">First name &middot; City</figcaption>
+      </figure>
+      <figure class="t-card">
+        <div class="shot"><div class="drop" data-i18n="shot.3">Screenshot 3<br>add image here</div></div>
+        <figcaption class="who" data-i18n="who.3">First name &middot; City</figcaption>
+      </figure>
+      <figure class="t-card">
+        <div class="shot"><div class="drop" data-i18n="shot.4">Screenshot 4<br>add image here</div></div>
+        <figcaption class="who" data-i18n="who.4">First name &middot; City</figcaption>
+      </figure>
+      <figure class="t-card">
+        <div class="shot"><div class="drop" data-i18n="shot.5">Screenshot 5<br>add image here</div></div>
+        <figcaption class="who" data-i18n="who.5">First name &middot; City</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section class="banner">
   <div class="wrap-narrow reveal">
     <div class="eyebrow centered"><span data-i18n="sec.freetag">Free, every week</span></div>
     <h2 data-i18n="free.h">Sit with us this week.</h2>
-    <p data-i18n="free.p">A free guided meditation, open to everyone — whether you have practised for years or never sat still in your life. The simplest way to feel what this work does before committing to anything.</p>
+    <p data-i18n="free.p">A free guided meditation, open to everyone &mdash; whether you have practised for years or never sat still in your life. The simplest way to feel what this work does before committing to anything.</p>
     <div class="chakra-rule centered" style="margin:1.4rem 0 0"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     <div class="banner-cta">
       <a href="#" class="btn" data-wa data-wa-msg="Hello Kshipra, I would like to join the free weekly meditation at Urjita. Please share the details." data-i18n="cta.reserve">Reserve my place</a>
@@ -285,50 +322,10 @@
   </div>
 </section>
 
-<!-- ============ TESTIMONIALS ============ -->
-<section>
-  <div class="wrap reveal">
-    <div class="eyebrow"><span data-i18n="sec.words">In their words</span></div>
-    <h2 class="serif-lg" data-i18n="testi.h">What people say afterwards.</h2>
-    <p class="rail-hint" data-i18n="testi.hint">Swipe to see more →</p>
-
-    <!--
-      TESTIMONIAL SCREENSHOTS
-      Drop your WhatsApp screenshots into /images/ named
-      testimonial-1.jpg … testimonial-5.jpg
-      then replace each <div class="drop">…</div> with:
-      <img src="/images/testimonial-1.jpg" alt="Client message">
-    -->
-    <div class="rail">
-      <figure class="t-card">
-        <div class="shot"><div class="drop" data-i18n="shot.1">Screenshot 1<br>add image here</div></div>
-        <figcaption class="who" data-i18n="who.1">First name · City</figcaption>
-      </figure>
-      <figure class="t-card">
-        <div class="shot"><div class="drop" data-i18n="shot.2">Screenshot 2<br>add image here</div></div>
-        <figcaption class="who" data-i18n="who.2">First name · City</figcaption>
-      </figure>
-      <figure class="t-card">
-        <div class="shot"><div class="drop" data-i18n="shot.3">Screenshot 3<br>add image here</div></div>
-        <figcaption class="who" data-i18n="who.3">First name · City</figcaption>
-      </figure>
-      <figure class="t-card">
-        <div class="shot"><div class="drop" data-i18n="shot.4">Screenshot 4<br>add image here</div></div>
-        <figcaption class="who" data-i18n="who.4">First name · City</figcaption>
-      </figure>
-      <figure class="t-card">
-        <div class="shot"><div class="drop" data-i18n="shot.5">Screenshot 5<br>add image here</div></div>
-        <figcaption class="who" data-i18n="who.5">First name · City</figcaption>
-      </figure>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div class="f-brand">
-      <img src="/images/urjita-logo-light.png" alt="Urjita Pranic Upchar Kendra">
+      <img src="/images/urjita-logo-light.png" width="221" height="260" alt="Urjita Pranic Upchar Kendra">
       <p data-i18n="foot.blurb">Pranic Healing, meditation and wellbeing with Kshipra Lokare.</p>
       <div class="chakra-rule"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
     </div>
@@ -356,7 +353,6 @@
         <h5 data-i18n="foot.reach">Reach us</h5>
         <ul>
           <li><a href="tel:+918446339272">+91 84463 39272</a></li>
-          <li><a href="tel:+919664338632">+91 96643 38632</a></li>
           <li><a href="mailto:urjitapranichealing@gmail.com">Email us</a></li>
           <li><a href="https://instagram.com/urjitapranichealing" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
@@ -369,7 +365,7 @@
   </div>
 
   <div class="wrap footer-bottom">
-    <span>© <span id="yr"></span> Urjita Yog ani Pranic Upchar Kendra</span>
+    <span>&copy; <span id="yr"></span> Urjita Yog ani Pranic Upchar Kendra</span>
     <span><a href="/policies" data-i18n="foot.policies">Privacy, Terms &amp; Refund Policy</a></span>
   </div>
 </footer>
