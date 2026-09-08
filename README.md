@@ -71,6 +71,15 @@ Preview locally with `npx vercel dev` — it mimics production including clean U
 
 ## What changed in this round
 
+**Menu on mobile — root cause found and fixed.** The nav panel lives inside `.site-header`, which has `z-index: 100`. That creates a stacking context, so the panel could never rise above 100 no matter what — and the backdrop at `z-index: 140` was painting straight over it. That's why the menu looked washed out and see-through. Layering is now: backdrop 90, header 100, panel 5 (inside the header), WhatsApp button 80. The panel also has a solid opaque background, a drop shadow, a close button, divider lines between items, and the WhatsApp button hides while it's open. The layering rules are documented at the top of `styles.css` — read that comment before changing any `z-index`.
+
+**Dim text on the plum sections — fixed.** Rules like `.pillar p` and `.benefit p` set a dark ink colour and were declared after the `.dark` rules with identical specificity, so dark-on-dark was winning. All text-on-plum overrides now sit in one block at the very end of the stylesheet where they always win, and the colour was lifted from 78% to 92% opacity. Headings are pure white, numbers and eyebrows are gold.
+
+**Hover states are much more obvious.** Cards on plum go from 7% to 18% white on hover with a gold border; cards on cream go from white to blush pink with a gold border and lift. Testimonial cards and location cards now respond too.
+
+## Earlier changes
+
+
 - **Testimonials scroll horizontally on every screen**, laptop included. Cards are larger on desktop, and you can drag them with the mouse as well as scroll.
 - **Logo** now sits in a fixed-size box so a missing or slow image can never break the header layout — which is what was mangling the mobile menu. Logo files are also 14 KB each now, down from 210 KB.
 - **Mobile menu** rebuilt: proper backdrop, body scroll locks while open, closes on Escape, on backdrop tap, and automatically if the window widens to desktop.

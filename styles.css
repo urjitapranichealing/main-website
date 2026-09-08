@@ -2,6 +2,16 @@
    URJITA — Pranic Upchar Kendra
    Mobile-first. Base styles are phone; media queries scale up.
    Palette taken from the logo: magenta-to-plum wordmark, antique gold mark.
+
+   LAYERING (read before changing any z-index)
+   ------------------------------------------------------------
+   grain overlay ... 9999   purely decorative, no pointer events
+   site-header ..... 100    creates a stacking context
+     └ nav panel ...   5    lives INSIDE the header, so it can never
+                            rise above the header's own 100
+   nav backdrop .... 90     MUST stay below the header, otherwise it
+                            paints over the open nav panel
+   whatsapp fab .... 80
    ============================================================ */
 
 :root {
@@ -18,8 +28,11 @@
   --gold-lite:    #E5BE68;
   --line:         rgba(190, 139, 44, 0.30);
   --line-soft:    rgba(42, 21, 32, 0.10);
-  --line-dark:    rgba(229, 190, 104, 0.26);
-  --on-dark:      rgba(251, 246, 239, 0.78);
+  --line-dark:    rgba(229, 190, 104, 0.30);
+
+  /* text on plum backgrounds */
+  --on-dark:      rgba(251, 246, 239, 0.92);
+  --on-dark-soft: rgba(251, 246, 239, 0.80);
 
   --font-display: 'Fraunces', 'Playfair Display', Georgia, serif;
   --font-body:    'Jost', 'Poppins', -apple-system, sans-serif;
@@ -148,12 +161,11 @@ body.lang-mr .link-more { text-transform: none; letter-spacing: 0.02em; font-siz
 .chakra-rule i:nth-child(7) { background: #8E44AD; }
 
 /* ============================================================
-   HEADER  (mobile: logo | language toggle | burger)
+   HEADER
    ============================================================ */
 .site-header {
   position: sticky; top: 0; z-index: 100;
-  background: rgba(251, 246, 239, 0.95);
-  backdrop-filter: blur(14px);
+  background: var(--paper);
   border-bottom: 1px solid var(--line);
   transition: box-shadow 0.4s var(--ease);
 }
@@ -167,7 +179,7 @@ body.lang-mr .link-more { text-transform: none; letter-spacing: 0.02em; font-siz
   min-height: 62px;
 }
 
-/* fixed box so a slow-loading or missing image can never break the layout */
+/* fixed box so a slow or missing image can never break the layout */
 .brand-logo {
   flex: none;
   width: 62px; height: 46px;
@@ -178,30 +190,23 @@ body.lang-mr .link-more { text-transform: none; letter-spacing: 0.02em; font-siz
 
 .header-actions { display: flex; align-items: center; gap: 0.6rem; flex: 1; min-width: 0; }
 
-/* toggle fills the space freed by the removed CTA on mobile */
 .lang-toggle {
-  display: flex;
-  flex: 1;
-  min-width: 0;
+  display: flex; flex: 1; min-width: 0;
   border: 1px solid var(--line);
   border-radius: 100px;
   overflow: hidden;
   font-size: 0.76rem;
 }
 .lang-toggle button {
-  flex: 1;
-  min-width: 0;
-  border: 0;
-  background: transparent;
+  flex: 1; min-width: 0;
+  border: 0; background: transparent;
   padding: 0.5rem 0.4rem;
   cursor: pointer;
   font-family: var(--font-body);
   color: var(--ink-soft);
   letter-spacing: 0.06em;
   transition: all 0.3s;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .lang-toggle button.on { background: var(--magenta); color: #fff; }
 
@@ -217,40 +222,63 @@ body.lang-mr .link-more { text-transform: none; letter-spacing: 0.02em; font-siz
 .burger.open span:nth-child(2) { opacity: 0; }
 .burger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
 
+/* ---------- slide-out nav panel ---------- */
 .nav {
   position: fixed;
   top: 0; right: 0; bottom: 0;
-  width: min(310px, 82vw);
-  background: var(--paper);
+  z-index: 5;                       /* inside the header's stacking context */
+  width: min(320px, 84vw);
+  background-color: #FBF6EF;        /* opaque — never see the page through it */
   border-left: 1px solid var(--line);
+  box-shadow: -24px 0 60px -30px rgba(42,21,32,0.6);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1.5rem;
-  padding: 2.5rem 2rem;
+  gap: 0.4rem;
+  padding: 4.5rem 1.8rem 2.5rem;
   overflow-y: auto;
   transform: translateX(105%);
-  transition: transform 0.45s var(--ease);
-  z-index: 150;
+  transition: transform 0.42s var(--ease);
 }
 .nav.open { transform: none; }
 .nav a {
-  font-size: 1rem; letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--ink-soft); padding: 0.2rem 0;
+  font-size: 1.02rem;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--ink);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--line-soft);
 }
+.nav a:last-child { border-bottom: 0; }
 .nav a.active, .nav a:hover { color: var(--magenta); }
 body.lang-mr .nav a { text-transform: none; letter-spacing: 0.02em; font-size: 1.1rem; }
 
+.nav-close {
+  position: absolute;
+  top: 0.9rem; right: 1.1rem;
+  width: 40px; height: 40px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  font-size: 1.4rem; line-height: 1;
+  cursor: pointer;
+  display: grid; place-items: center;
+  transition: all 0.3s;
+}
+.nav-close:hover { background: var(--magenta); border-color: var(--magenta); color: #fff; }
+
 .nav-scrim {
-  position: fixed; inset: 0; z-index: 140;
-  background: rgba(42,21,32,0.5);
+  position: fixed; inset: 0;
+  z-index: 90;                      /* below the header, above the page */
+  background: rgba(42,21,32,0.55);
   opacity: 0; pointer-events: none;
   transition: opacity 0.4s var(--ease);
 }
 .nav-scrim.on { opacity: 1; pointer-events: auto; }
 
 /* ============================================================
-   HERO — mobile order: headline, lead, buttons, then animation
+   HERO
    ============================================================ */
 .hero { padding: 2.2rem 0 2.8rem; overflow: hidden; }
 .hero h1 { font-size: 2.4rem; margin-bottom: 1rem; }
@@ -261,7 +289,6 @@ body.lang-mr .nav a { text-transform: none; letter-spacing: 0.02em; font-size: 1
 .hero-aura { margin-top: 2.4rem; display: grid; place-items: center; }
 .hero-aura svg { width: 100%; max-width: 340px; overflow: visible; }
 
-/* ---- healing animation ---- */
 @keyframes breathe {
   0%, 100% { transform: scale(0.94); opacity: 0.5; }
   50%      { transform: scale(1.08); opacity: 1; }
@@ -318,21 +345,13 @@ body.lang-mr .nav a { text-transform: none; letter-spacing: 0.02em; font-size: 1
 }
 
 /* ============================================================
-   DARK SECTIONS — the logo's plum, replacing the old warm beige
+   DARK SECTIONS — the plum from the logo wordmark
    ============================================================ */
 .dark {
   background: linear-gradient(165deg, var(--plum-1), var(--plum-2));
-  color: var(--paper);
+  color: var(--on-dark);
   border-block: 1px solid var(--line-dark);
 }
-.dark h2, .dark h3, .dark h4 { color: #fff; }
-.dark p, .dark .lead, .dark li { color: var(--on-dark); }
-.dark .eyebrow, .dark .num, .dark .tag { color: var(--gold-lite); }
-.dark .tag { border-color: var(--line-dark); }
-.dark .ital { color: var(--gold-lite); }
-.dark .link-more { color: var(--gold-lite); border-color: var(--line-dark); }
-.dark .btn-ghost { color: var(--gold-lite); border-color: var(--gold-lite); }
-.dark .btn-ghost:hover { background: var(--gold-lite); color: var(--plum-2); }
 
 /* ============================================================
    IMPACT NUMBERS
@@ -375,15 +394,15 @@ body.lang-mr .nav a { text-transform: none; letter-spacing: 0.02em; font-size: 1
   font-size: 0.72rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(251,246,239,0.72);
+  color: var(--on-dark);
 }
 body.lang-mr .impact-item .v { text-transform: none; letter-spacing: 0.02em; font-size: 0.92rem; }
 .impact-credentials {
   margin: 1.8rem 0 0;
   text-align: center;
-  font-size: 0.76rem;
+  font-size: 0.78rem;
   letter-spacing: 0.06em;
-  color: rgba(251,246,239,0.62);
+  color: var(--on-dark-soft);
   line-height: 1.9;
 }
 
@@ -397,9 +416,9 @@ body.lang-mr .impact-item .v { text-transform: none; letter-spacing: 0.02em; fon
   background: #fff;
   position: relative;
   overflow: hidden;
-  transition: all 0.5s var(--ease);
+  transition: background 0.35s var(--ease), border-color 0.35s var(--ease),
+              transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
 }
-.dark .pillar { background: rgba(255,255,255,0.055); border-color: var(--line-dark); }
 .pillar::after {
   content: "";
   position: absolute; inset: auto 0 0 0; height: 3px;
@@ -407,11 +426,14 @@ body.lang-mr .impact-item .v { text-transform: none; letter-spacing: 0.02em; fon
   transform: scaleX(0); transform-origin: left;
   transition: transform 0.6s var(--ease);
 }
-.pillar:hover { transform: translateY(-5px); box-shadow: 0 26px 54px -40px rgba(0,0,0,0.5); }
-.dark .pillar:hover { background: rgba(255,255,255,0.09); }
+.pillar:hover {
+  transform: translateY(-6px);
+  background: var(--blush);
+  border-color: var(--gold);
+  box-shadow: 0 26px 54px -34px rgba(138,15,72,0.45);
+}
 .pillar:hover::after { transform: scaleX(1); }
-.pillar .icon { color: var(--magenta); margin-bottom: 1rem; }
-.dark .pillar .icon { color: var(--gold-lite); }
+.pillar .icon { color: var(--magenta); margin-bottom: 1rem; transition: color 0.35s; }
 .pillar h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
 .pillar p { font-size: 0.96rem; color: var(--ink-soft); }
 .pillar ul { list-style: none; padding: 0; margin: 1rem 0 0; }
@@ -421,12 +443,10 @@ body.lang-mr .impact-item .v { text-transform: none; letter-spacing: 0.02em; fon
   position: relative;
   border-top: 1px solid var(--line-soft);
 }
-.dark .pillar li { border-top-color: rgba(229,190,104,0.18); }
 .pillar li::before {
   content: ""; position: absolute; left: 0; top: 1.1em;
   width: 5px; height: 5px; background: var(--gold); border-radius: 50%;
 }
-.dark .pillar li::before { background: var(--gold-lite); }
 
 /* ============================================================
    SPLIT BLOCKS
@@ -443,12 +463,18 @@ body.lang-mr .impact-item .v { text-transform: none; letter-spacing: 0.02em; fon
 .quote-card::before {
   content: "\201C";
   font-family: var(--font-display);
-  font-size: 5.5rem; color: var(--gold);
-  opacity: 0.5; position: absolute;
+  font-size: 5.5rem; color: var(--gold-lite);
+  opacity: 0.55; position: absolute;
   top: -0.16em; left: 0.24em; line-height: 1;
 }
-.quote-card p { font-family: var(--font-display); font-size: 1.22rem; line-height: 1.45; font-style: italic; position: relative; color: var(--paper); }
-.quote-card .attrib { font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-lite); margin: 0; font-family: var(--font-body); font-style: normal; }
+.quote-card p {
+  font-family: var(--font-display); font-size: 1.22rem; line-height: 1.45;
+  font-style: italic; position: relative; color: #fff;
+}
+.quote-card .attrib {
+  font-size: 0.68rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold-lite); margin: 0; font-family: var(--font-body); font-style: normal;
+}
 body.lang-mr .quote-card .attrib { text-transform: none; letter-spacing: 0.02em; font-size: 0.86rem; }
 
 .portrait-frame { position: relative; }
@@ -468,7 +494,7 @@ body.lang-mr .quote-card .attrib { text-transform: none; letter-spacing: 0.02em;
 }
 
 /* ============================================================
-   TEAM CARDS (home)
+   TEAM CARDS
    ============================================================ */
 .team-grid { display: grid; gap: 1.4rem; margin-top: 2rem; }
 .member {
@@ -476,12 +502,16 @@ body.lang-mr .quote-card .attrib { text-transform: none; letter-spacing: 0.02em;
   background: #fff;
   overflow: hidden;
   display: flex; flex-direction: column;
-  transition: all 0.5s var(--ease);
+  transition: all 0.45s var(--ease);
 }
-.member:hover { transform: translateY(-5px); box-shadow: 0 28px 56px -42px rgba(138,15,72,0.5); }
+.member:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 28px 56px -36px rgba(138,15,72,0.5);
+}
 .member-photo { aspect-ratio: 4 / 5; overflow: hidden; background: var(--blush); }
 .member-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
-.member:hover .member-photo img { transform: scale(1.04); }
+.member:hover .member-photo img { transform: scale(1.05); }
 .member-body { padding: 1.4rem 1.3rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
 .member h3 { font-size: 1.35rem; margin-bottom: 0.25rem; }
 .member .role {
@@ -492,7 +522,7 @@ body.lang-mr .member .role { text-transform: none; letter-spacing: 0.02em; font-
 .member .bio { font-size: 0.94rem; color: var(--ink-soft); flex: 1; margin-bottom: 1.1rem; }
 
 /* ============================================================
-   PROFILE BLOCKS (about) — photo first, then bio
+   PROFILE BLOCKS
    ============================================================ */
 .profile { scroll-margin-top: 84px; }
 .profile + .profile { margin-top: 3.2rem; padding-top: 3.2rem; border-top: 1px solid var(--line); }
@@ -526,8 +556,8 @@ body.lang-mr .mini-stat span { text-transform: none; letter-spacing: 0.02em; fon
 
 .lineage-portrait {
   width: 132px; height: 132px; border-radius: 50%;
-  overflow: hidden; border: 1px solid var(--gold);
-  box-shadow: 0 0 0 7px rgba(190,139,44,0.12);
+  overflow: hidden; border: 1px solid var(--gold-lite);
+  box-shadow: 0 0 0 7px rgba(229,190,104,0.15);
   margin-bottom: 1.4rem;
 }
 .lineage-portrait img { width: 100%; height: 100%; object-fit: cover; }
@@ -536,11 +566,8 @@ body.lang-mr .mini-stat span { text-transform: none; letter-spacing: 0.02em; fon
    BENEFIT GRID
    ============================================================ */
 .benefit-grid { display: grid; gap: 1px; background: var(--line); border: 1px solid var(--line); margin-top: 2rem; }
-.dark .benefit-grid { background: var(--line-dark); border-color: var(--line-dark); }
-.benefit { background: var(--paper); padding: 1.5rem 1.3rem; transition: background 0.4s var(--ease); }
-.benefit:hover { background: #fff; }
-.dark .benefit { background: rgba(255,255,255,0.045); }
-.dark .benefit:hover { background: rgba(255,255,255,0.09); }
+.benefit { background: var(--paper); padding: 1.5rem 1.3rem; transition: background 0.35s var(--ease); }
+.benefit:hover { background: var(--blush); }
 .benefit .num { display: block; margin-bottom: 0.6rem; }
 .benefit h4 { font-size: 1.1rem; margin-bottom: 0.3rem; }
 .benefit p { font-size: 0.92rem; color: var(--ink-soft); margin: 0; }
@@ -553,18 +580,15 @@ body.lang-mr .mini-stat span { text-transform: none; letter-spacing: 0.02em; fon
     radial-gradient(circle at 15% 25%, rgba(229,190,104,0.22), transparent 55%),
     radial-gradient(circle at 85% 75%, rgba(217,76,140,0.30), transparent 55%),
     var(--plum-2);
-  color: var(--paper);
+  color: var(--on-dark);
   text-align: center;
 }
 .banner h2 { color: #fff; font-size: 1.85rem; }
-.banner p { color: var(--on-dark); }
 .banner .eyebrow { color: var(--gold-lite); }
 .banner-cta { display: flex; flex-direction: column; gap: 0.7rem; margin-top: 1.6rem; }
-.banner .btn-gold { color: var(--gold-lite); border-color: var(--gold-lite); }
-.banner .btn-gold:hover { background: var(--gold-lite); color: var(--plum-2); }
 
 /* ============================================================
-   TESTIMONIAL RAIL — horizontal at every screen size
+   TESTIMONIAL RAIL
    ============================================================ */
 .rail {
   display: flex;
@@ -591,12 +615,13 @@ body.lang-mr .mini-stat span { text-transform: none; letter-spacing: 0.02em; fon
   background: #fff;
   display: flex;
   flex-direction: column;
+  transition: border-color 0.35s, box-shadow 0.35s;
 }
+.t-card:hover { border-color: var(--gold); box-shadow: 0 20px 44px -32px rgba(138,15,72,0.5); }
 .shot {
   background: var(--blush);
   height: 330px;
-  display: grid;
-  place-items: center;
+  display: grid; place-items: center;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
 }
@@ -619,7 +644,6 @@ body.lang-mr .t-card .who, body.lang-mr .shot .drop { text-transform: none; lett
    ============================================================ */
 .svc-row { display: grid; gap: 0.7rem; padding: 1.8rem 0; border-top: 1px solid var(--line); }
 .svc-row:last-child { border-bottom: 1px solid var(--line); }
-.dark .svc-row { border-color: var(--line-dark); }
 .svc-row h3 { font-size: 1.4rem; margin: 0; }
 .svc-row p { margin: 0; color: var(--ink-soft); font-size: 0.96rem; }
 .tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 0.7rem; }
@@ -634,7 +658,6 @@ body.lang-mr .tag { text-transform: none; letter-spacing: 0.02em; font-size: 0.8
    TIMELINE
    ============================================================ */
 .timeline { border-left: 1px solid var(--line); padding-left: 1.6rem; margin-top: 2rem; }
-.dark .timeline { border-color: var(--line-dark); }
 .tl-item { position: relative; padding-bottom: 1.7rem; }
 .tl-item::before {
   content: ""; position: absolute;
@@ -642,16 +665,15 @@ body.lang-mr .tag { text-transform: none; letter-spacing: 0.02em; font-size: 0.8
   width: 9px; height: 9px; border-radius: 50%;
   background: var(--paper); border: 1px solid var(--magenta);
 }
-.dark .tl-item::before { background: var(--plum-2); border-color: var(--gold-lite); }
 .tl-item .yr { font-family: var(--font-display); color: var(--magenta); font-size: 1.25rem; display: block; }
-.dark .tl-item .yr { color: var(--gold-lite); }
 .tl-item p { margin: 0.2rem 0 0; color: var(--ink-soft); font-size: 0.95rem; }
 
 /* ============================================================
    CONTACT
    ============================================================ */
 .contact-grid { display: grid; gap: 2.5rem; }
-.loc-card { border: 1px solid var(--line); padding: 1.4rem; margin-bottom: 1rem; background: #fff; }
+.loc-card { border: 1px solid var(--line); padding: 1.4rem; margin-bottom: 1rem; background: #fff; transition: all 0.35s var(--ease); }
+.loc-card:hover { background: var(--blush); border-color: var(--gold); }
 .loc-card h4 { font-size: 1.15rem; margin-bottom: 0.2rem; }
 .loc-card p { font-size: 0.93rem; color: var(--ink-soft); margin: 0; }
 
@@ -722,7 +744,7 @@ body.lang-mr .policy-updated { text-transform: none; letter-spacing: 0.02em; }
 .footer-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.8rem 1.2rem; padding-bottom: 2.4rem; }
 .f-brand { grid-column: 1 / -1; }
 .f-brand img { height: 76px; width: auto; margin-bottom: 0.9rem; }
-.f-brand p { font-size: 0.92rem; }
+.f-brand p { font-size: 0.92rem; color: var(--on-dark); }
 .f-right { display: grid; gap: 1.8rem; align-content: start; }
 
 .site-footer h5 {
@@ -732,27 +754,29 @@ body.lang-mr .policy-updated { text-transform: none; letter-spacing: 0.02em; }
 }
 body.lang-mr .site-footer h5 { text-transform: none; letter-spacing: 0.03em; font-size: 0.9rem; }
 .site-footer ul { list-style: none; padding: 0; margin: 0; }
-.site-footer li { margin-bottom: 0.5rem; font-size: 0.9rem; }
+.site-footer li { margin-bottom: 0.5rem; font-size: 0.9rem; color: var(--on-dark); }
 .site-footer a:hover { color: var(--gold-lite); }
 
 .footer-bottom {
-  border-top: 1px solid rgba(251,246,239,0.16);
+  border-top: 1px solid rgba(251,246,239,0.2);
   padding: 1.2rem 0;
   display: flex; flex-direction: column; gap: 0.5rem;
-  font-size: 0.76rem;
+  font-size: 0.78rem;
+  color: var(--on-dark);
 }
-.footer-bottom a { color: rgba(251,246,239,0.88); text-decoration: underline; text-underline-offset: 3px; }
-.disclaimer { background: rgba(0,0,0,0.26); padding: 1.2rem 0; font-size: 0.75rem; line-height: 1.6; color: rgba(251,246,239,0.6); }
+.footer-bottom a { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.disclaimer { background: rgba(0,0,0,0.28); padding: 1.2rem 0; font-size: 0.78rem; line-height: 1.65; color: var(--on-dark-soft); }
 
 /* ---------- floating whatsapp ---------- */
 .fab {
-  position: fixed; right: 16px; bottom: 16px; z-index: 200;
+  position: fixed; right: 16px; bottom: 16px; z-index: 80;
   width: 52px; height: 52px; border-radius: 50%;
   background: #25D366; display: grid; place-items: center;
   box-shadow: 0 14px 34px -10px rgba(37,211,102,0.7);
-  transition: transform 0.35s var(--ease);
+  transition: transform 0.35s var(--ease), opacity 0.3s;
 }
 .fab:hover { transform: scale(1.08) rotate(-6deg); }
+body.nav-open .fab { opacity: 0; pointer-events: none; }
 
 /* ---------- scroll reveal ---------- */
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.8s var(--ease), transform 0.8s var(--ease); }
@@ -760,7 +784,51 @@ body.lang-mr .site-footer h5 { text-transform: none; letter-spacing: 0.03em; fon
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 
 /* ============================================================
-   ≥ 640px
+   TEXT ON PLUM  —  kept LAST so it always wins the cascade.
+   Component rules above set dark ink colours; these override
+   them wherever the component sits on a plum background.
+   ============================================================ */
+.dark h2, .dark h3, .dark h4,
+.banner h2, .banner h3 { color: #fff; }
+
+.dark p, .dark li, .dark .lead,
+.dark .pillar p, .dark .pillar li,
+.dark .benefit p, .dark .svc-row p,
+.dark .tl-item p, .dark .cred-list li,
+.banner p, .banner .lead { color: var(--on-dark); }
+
+.dark .eyebrow, .dark .num, .dark .tag,
+.dark .tl-item .yr, .dark .cred-block h4 { color: var(--gold-lite); }
+.dark .tag { border-color: var(--line-dark); }
+.dark .ital { color: var(--gold-lite); }
+.dark .link-more { color: var(--gold-lite); border-color: var(--line-dark); }
+.dark .btn-ghost, .banner .btn-ghost,
+.dark .btn-gold, .banner .btn-gold { color: var(--gold-lite); border-color: var(--gold-lite); }
+.dark .btn-ghost:hover, .banner .btn-ghost:hover,
+.dark .btn-gold:hover, .banner .btn-gold:hover { background: var(--gold-lite); color: var(--plum-2); }
+
+.dark .svc-row, .dark .timeline { border-color: var(--line-dark); }
+.dark .pillar li { border-top-color: rgba(229,190,104,0.22); }
+.dark .pillar li::before, .dark .cred-list li::before { background: var(--gold-lite); }
+.dark .pillar .icon { color: var(--gold-lite); }
+.dark .tl-item::before { background: var(--plum-2); border-color: var(--gold-lite); }
+
+/* cards on plum: clearly visible resting state, obvious hover */
+.dark .pillar {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: var(--line-dark);
+}
+.dark .pillar:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: var(--gold-lite);
+  box-shadow: 0 26px 54px -30px rgba(0, 0, 0, 0.7);
+}
+.dark .benefit-grid { background: var(--line-dark); border-color: var(--line-dark); }
+.dark .benefit { background: rgba(255, 255, 255, 0.06); }
+.dark .benefit:hover { background: rgba(255, 255, 255, 0.19); }
+
+/* ============================================================
+   >= 640px
    ============================================================ */
 @media (min-width: 640px) {
   :root { --pad: 2rem; }
@@ -782,7 +850,7 @@ body.lang-mr .site-footer h5 { text-transform: none; letter-spacing: 0.03em; fon
 }
 
 /* ============================================================
-   ≥ 900px
+   >= 900px
    ============================================================ */
 @media (min-width: 900px) {
   section { padding: 5.5rem 0; }
@@ -798,14 +866,18 @@ body.lang-mr .site-footer h5 { text-transform: none; letter-spacing: 0.03em; fon
   .lang-toggle { flex: none; font-size: 0.7rem; }
   .lang-toggle button { flex: none; padding: 0.42rem 0.9rem; }
   .header-cta { display: inline-flex; }
-  .burger, .nav-scrim { display: none; }
+  .burger, .nav-scrim, .nav-close { display: none; }
 
   .nav {
-    position: static; width: auto; background: none; border: 0;
+    position: static; width: auto;
+    background-color: transparent; border: 0; box-shadow: none;
     flex-direction: row; align-items: center; gap: 1.7rem;
     padding: 0; transform: none; margin-left: auto; overflow: visible; order: 2;
   }
-  .nav a { font-size: 0.75rem; letter-spacing: 0.13em; position: relative; padding: 4px 0; }
+  .nav a {
+    font-size: 0.75rem; letter-spacing: 0.13em;
+    position: relative; padding: 4px 0; border-bottom: 0; color: var(--ink-soft);
+  }
   .nav a::after {
     content: ""; position: absolute; left: 0; bottom: 0;
     width: 0; height: 1px; background: var(--magenta);

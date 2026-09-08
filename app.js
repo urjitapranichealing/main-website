@@ -479,11 +479,14 @@ document.addEventListener('DOMContentLoaded', () => {
   const nav = document.getElementById('nav');
   const scrim = document.getElementById('scrim');
 
+  const navClose = document.getElementById('nav-close');
+
   function closeNav() {
     if (!nav) return;
     nav.classList.remove('open');
     if (burger) { burger.classList.remove('open'); burger.setAttribute('aria-expanded', 'false'); }
     if (scrim) scrim.classList.remove('on');
+    document.body.classList.remove('nav-open');
     document.body.style.overflow = '';
   }
 
@@ -493,9 +496,11 @@ document.addEventListener('DOMContentLoaded', () => {
       burger.classList.toggle('open', open);
       burger.setAttribute('aria-expanded', String(open));
       if (scrim) scrim.classList.toggle('on', open);
+      document.body.classList.toggle('nav-open', open);
       document.body.style.overflow = open ? 'hidden' : '';
     });
     nav.querySelectorAll('a').forEach(a => a.addEventListener('click', closeNav));
+    if (navClose) navClose.addEventListener('click', closeNav);
     if (scrim) scrim.addEventListener('click', closeNav);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNav(); });
     window.addEventListener('resize', () => { if (window.innerWidth >= 900) closeNav(); });
