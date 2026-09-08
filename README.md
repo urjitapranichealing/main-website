@@ -71,6 +71,20 @@ Preview locally with `npx vercel dev` — it mimics production including clean U
 
 ## What changed in this round
 
+**Photo distortion — fixed at the root.** The images were always exactly 760 x 950 (a clean 4:5), so the files were never the problem. The `<img>` tags carry `width="760" height="950"`, and my CSS set `width: 100%` without `height: auto` — so the browser shrank the width to fit the column while holding the height at 950px, squashing every portrait. `img { height: auto; }` is now global. If you swap in your own photos, keep them at **760 x 950 or any 4:5 ratio** (e.g. 900 x 1125, 1200 x 1500) and update the `width`/`height` attributes to match.
+
+**Testimonials** now appear on the Healings and Workshops pages as well as Home, identical in look and behaviour. They come from one shared block, but the build writes them into each page — so if you edit the screenshots, edit all three HTML files.
+
+**Madhavi Lokare** replaces "Mrs. Lokare" everywhere, and her image file is now `images/madhavi-lokare.jpg`. Years of healing is 15, in the stats strip and in her bio text.
+
+**Branch phone numbers.** Badlapur East shows +91 84463 39272 with your Google Maps pin. Dombivli East shows +91 99671 21519. Both appear on the Contact page and in the footer. The WhatsApp button and enquiry form still route to 84463 39272 — say the word if Dombivli enquiries should go elsewhere. The Dombivli maps link is still a name search; send me the pin and I'll swap it.
+
+**New figures:** 7,000+ healings, 600+ sessions online and offline, 2,500+ students and teachers reached by the Super Brain Yoga project in three months. They count up on Home and About.
+
+**Shop page added** at `/shop`, with the five categories plus a "not sure what you need" card. Every button points at `https://shop.urjitapranichealing.com`, set once as `SHOP_URL` in `app.js`. To send each category to its own collection page instead, replace `data-shop-link` on that button with a normal `href`.
+
+## Earlier changes
+
 **Menu on mobile — root cause found and fixed.** The nav panel lives inside `.site-header`, which has `z-index: 100`. That creates a stacking context, so the panel could never rise above 100 no matter what — and the backdrop at `z-index: 140` was painting straight over it. That's why the menu looked washed out and see-through. Layering is now: backdrop 90, header 100, panel 5 (inside the header), WhatsApp button 80. The panel also has a solid opaque background, a drop shadow, a close button, divider lines between items, and the WhatsApp button hides while it's open. The layering rules are documented at the top of `styles.css` — read that comment before changing any `z-index`.
 
 **Dim text on the plum sections — fixed.** Rules like `.pillar p` and `.benefit p` set a dark ink colour and were declared after the `.dark` rules with identical specificity, so dark-on-dark was winning. All text-on-plum overrides now sit in one block at the very end of the stylesheet where they always win, and the colour was lifted from 78% to 92% opacity. Headings are pure white, numbers and eyebrows are gold.

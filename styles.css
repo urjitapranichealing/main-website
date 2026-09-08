@@ -73,7 +73,7 @@ body.lang-mr h1, body.lang-mr h2, body.lang-mr h3, body.lang-mr h4 {
 }
 body.lang-mr { line-height: 1.85; }
 
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }   /* height:auto stops the width/height attributes squashing photos */
 a { color: inherit; text-decoration: none; }
 
 h1, h2, h3, h4 {
@@ -510,7 +510,7 @@ body.lang-mr .quote-card .attrib { text-transform: none; letter-spacing: 0.02em;
   box-shadow: 0 28px 56px -36px rgba(138,15,72,0.5);
 }
 .member-photo { aspect-ratio: 4 / 5; overflow: hidden; background: var(--blush); }
-.member-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
+.member-photo img { width: 100%; height: 100%; min-height: 100%; object-fit: cover; transition: transform 0.7s var(--ease); }
 .member:hover .member-photo img { transform: scale(1.05); }
 .member-body { padding: 1.4rem 1.3rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
 .member h3 { font-size: 1.35rem; margin-bottom: 0.25rem; }
@@ -560,7 +560,7 @@ body.lang-mr .mini-stat span { text-transform: none; letter-spacing: 0.02em; fon
   box-shadow: 0 0 0 7px rgba(229,190,104,0.15);
   margin-bottom: 1.4rem;
 }
-.lineage-portrait img { width: 100%; height: 100%; object-fit: cover; }
+.lineage-portrait img { width: 100%; height: 100%; min-height: 100%; object-fit: cover; }
 
 /* ============================================================
    BENEFIT GRID
@@ -625,7 +625,7 @@ body.lang-mr .mini-stat span { text-transform: none; letter-spacing: 0.02em; fon
   overflow: hidden;
   border-bottom: 1px solid var(--line);
 }
-.shot img { width: 100%; height: 100%; object-fit: contain; }
+.shot img { width: 100%; height: 100%; min-height: 100%; object-fit: contain; }
 .shot .drop {
   text-align: center; color: var(--gold);
   font-size: 0.64rem; letter-spacing: 0.16em;
@@ -784,6 +784,46 @@ body.nav-open .fab { opacity: 0; pointer-events: none; }
 @media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
 
 /* ============================================================
+   SHOP CATEGORIES
+   ============================================================ */
+.shop-grid { display: grid; gap: 1rem; margin-top: 2rem; }
+.shop-card {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 1.8rem 1.5rem;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+  transition: background 0.35s var(--ease), border-color 0.35s var(--ease),
+              transform 0.45s var(--ease), box-shadow 0.45s var(--ease);
+}
+.shop-card::after {
+  content: ""; position: absolute; inset: auto 0 0 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--magenta-lite));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.6s var(--ease);
+}
+.shop-card:hover {
+  transform: translateY(-6px);
+  background: var(--blush);
+  border-color: var(--gold);
+  box-shadow: 0 26px 54px -34px rgba(138,15,72,0.45);
+}
+.shop-card:hover::after { transform: scaleX(1); }
+.shop-card .icon { color: var(--magenta); margin-bottom: 1.1rem; }
+.shop-card h3 { font-size: 1.35rem; margin-bottom: 0.4rem; }
+.shop-card p { font-size: 0.95rem; color: var(--ink-soft); flex: 1; margin-bottom: 1.2rem; }
+
+.shop-note {
+  border: 1px dashed var(--line);
+  background: var(--blush);
+  padding: 1.4rem 1.5rem;
+  margin-top: 2.2rem;
+  font-size: 0.94rem;
+  color: var(--ink-soft);
+}
+.shop-note strong { color: var(--magenta); font-weight: 500; }
+
+/* ============================================================
    TEXT ON PLUM  —  kept LAST so it always wins the cascade.
    Component rules above set dark ink colours; these override
    them wherever the component sits on a plum background.
@@ -839,7 +879,7 @@ body.nav-open .fab { opacity: 0; pointer-events: none; }
   .banner h2 { font-size: 2.3rem; }
   .hero-cta, .banner-cta { flex-direction: row; flex-wrap: wrap; }
   .banner-cta { justify-content: center; }
-  .pillars, .benefit-grid, .team-grid { grid-template-columns: repeat(2, 1fr); }
+  .pillars, .benefit-grid, .team-grid, .shop-grid { grid-template-columns: repeat(2, 1fr); }
   .impact-list { grid-template-columns: repeat(3, 1fr); }
   .impact-item { border-bottom: 0; border-right: 1px solid var(--line-dark); padding: 0.5rem 0.8rem; }
   .impact-item:last-child { border-right: 0; }
@@ -897,6 +937,8 @@ body.nav-open .fab { opacity: 0; pointer-events: none; }
   .impact-item .k { font-size: 3.4rem; }
 
   .pillars { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .shop-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .shop-card { padding: 2.4rem 2rem; }
   .pillar { padding: 2.4rem 2rem; }
   .team-grid { grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
   .benefit-grid { grid-template-columns: repeat(3, 1fr); }
