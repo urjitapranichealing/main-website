@@ -71,6 +71,31 @@ Preview locally with `npx vercel dev` — it mimics production including clean U
 
 ## What changed in this round
 
+**Logo — the white patch is gone.** The old cut-out judged transparency by brightness, so the bright yellow centre of the gold mark got treated as background and punched a hole through it. The new version flood-fills only the white that is *connected to the outside edge*, so enclosed light areas inside the artwork are left alone. The gold now reads solid from tip to tip.
+
+**Hero** now shows the chakra artwork instead of the drawn SVG. A soft magenta-and-gold aura breathes behind it and the image drifts very slightly, so the section still has life without being an animation.
+
+**Five real testimonials** are live on Home, Healings and Workshops. I cropped the status bar and chat header off every screenshot, which removes the contact names, the profile photos and the phone numbers in one go — nothing identifying is left. Captions describe what each message is about rather than naming anyone.
+
+**Shop page** now leads with product photography. Bath Salts, Aura Sprays, Vastu Sprays, Crystals and Crystal Jewellery each have an image; the "not sure what you need" card keeps its icon.
+
+**Lotus** sits above the free-meditation invitation on the home page, with a soft gold glow.
+
+### About the images I derived
+
+All the artwork arrived on a solid black background, which would have shown as a black box on the cream site. I recovered each one by treating black as the matte and dividing the colour back out — that is why the watercolour edges fade cleanly instead of leaving a grey fringe.
+
+Two shop images were cut from your Aura Spray photo, since there was no separate artwork for them:
+
+- `bath-salts.png` — the salt jar from the right of that photo
+- `crystal-jewellery.png` — the beaded bracelet from the bottom left
+
+The bracelet crop includes part of a bottle base. It works, but a dedicated jewellery photo would be better whenever you have one — save it over `images/crystal-jewellery.png` and nothing else needs changing.
+
+All PNGs are palette-compressed: the images folder is 2.1 MB rather than 5.4 MB, which matters on Indian mobile data.
+
+## Earlier changes
+
 **Photo distortion — fixed at the root.** The images were always exactly 760 x 950 (a clean 4:5), so the files were never the problem. The `<img>` tags carry `width="760" height="950"`, and my CSS set `width: 100%` without `height: auto` — so the browser shrank the width to fit the column while holding the height at 950px, squashing every portrait. `img { height: auto; }` is now global. If you swap in your own photos, keep them at **760 x 950 or any 4:5 ratio** (e.g. 900 x 1125, 1200 x 1500) and update the `width`/`height` attributes to match.
 
 **Testimonials** now appear on the Healings and Workshops pages as well as Home, identical in look and behaviour. They come from one shared block, but the build writes them into each page — so if you edit the screenshots, edit all three HTML files.

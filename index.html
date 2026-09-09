@@ -55,81 +55,10 @@
     </div>
 
     <div class="hero-aura">
-      <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animated illustration of a meditating figure with seven glowing chakras and an expanding aura">
-        <defs>
-          <radialGradient id="auraCore" cx="50%" cy="50%">
-            <stop offset="0%"   stop-color="#FBE3EF"/>
-            <stop offset="55%"  stop-color="#F7E6EE" stop-opacity="0.55"/>
-            <stop offset="100%" stop-color="#FBF6EF" stop-opacity="0"/>
-          </radialGradient>
-          <linearGradient id="goldLine" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%"   stop-color="#E5BE68"/>
-            <stop offset="100%" stop-color="#BE8B2C"/>
-          </linearGradient>
-          <linearGradient id="channel" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0%"   stop-color="#C0392B" stop-opacity="0.5"/>
-            <stop offset="50%"  stop-color="#27AE60" stop-opacity="0.5"/>
-            <stop offset="100%" stop-color="#8E44AD" stop-opacity="0.5"/>
-          </linearGradient>
-          <linearGradient id="figure" x1="0" y1="1" x2="0" y2="0">
-            <stop offset="0%"   stop-color="#B2185F" stop-opacity="0.22"/>
-            <stop offset="100%" stop-color="#8E44AD" stop-opacity="0.16"/>
-          </linearGradient>
-          <radialGradient id="sweepGrad" cx="50%" cy="50%">
-            <stop offset="0%"   stop-color="#E5BE68" stop-opacity="0.75"/>
-            <stop offset="100%" stop-color="#E5BE68" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-
-        <ellipse class="aura-core" cx="200" cy="240" rx="168" ry="216" fill="url(#auraCore)"/>
-
-        <circle class="aura-rip"             cx="200" cy="240" r="120" fill="none" stroke="#D94C8C" stroke-opacity="0.55" stroke-width="1.5"/>
-        <circle class="aura-rip aura-rip--2" cx="200" cy="240" r="120" fill="none" stroke="#BE8B2C" stroke-opacity="0.55" stroke-width="1.5"/>
-        <circle class="aura-rip aura-rip--3" cx="200" cy="240" r="120" fill="none" stroke="#8E44AD" stroke-opacity="0.45" stroke-width="1.5"/>
-
-        <circle class="dash-ring"     cx="200" cy="240" r="152" fill="none" stroke="url(#goldLine)" stroke-opacity="0.6" stroke-dasharray="2 12"/>
-        <circle class="dash-ring--in" cx="200" cy="240" r="112" fill="none" stroke="url(#goldLine)" stroke-opacity="0.45" stroke-dasharray="1 8"/>
-
-        <g fill="url(#figure)" stroke="#B2185F" stroke-opacity="0.22" stroke-width="1">
-          <circle cx="200" cy="138" r="26"/>
-          <path d="M176 192 C176 178 224 178 224 192 L238 296 L162 296 Z"/>
-          <path d="M178 198 C142 216 130 262 152 292 L168 292 C148 262 156 222 186 206 Z"/>
-          <path d="M222 198 C258 216 270 262 248 292 L232 292 C252 262 244 222 214 206 Z"/>
-          <path d="M138 296 C112 314 108 344 136 352 L264 352 C292 344 288 314 262 296 Z"/>
-        </g>
-
-        <ellipse class="sweep-band" cx="200" cy="95" rx="120" ry="16" fill="url(#sweepGrad)"/>
-
-        <line x1="200" y1="336" x2="200" y2="100" stroke="url(#channel)" stroke-width="2.5" stroke-linecap="round"/>
-
-        <g>
-          <circle class="chakra-halo" cx="200" cy="336" r="9" fill="#C0392B" style="animation-delay:0s"/>
-          <circle class="chakra-pt"   cx="200" cy="336" r="5.5" fill="#C0392B" style="animation-delay:0s"/>
-          <circle class="chakra-halo" cx="200" cy="300" r="9" fill="#E67E22" style="animation-delay:.18s"/>
-          <circle class="chakra-pt"   cx="200" cy="300" r="5.5" fill="#E67E22" style="animation-delay:.18s"/>
-          <circle class="chakra-halo" cx="200" cy="268" r="9" fill="#D4AC0D" style="animation-delay:.36s"/>
-          <circle class="chakra-pt"   cx="200" cy="268" r="5.5" fill="#D4AC0D" style="animation-delay:.36s"/>
-          <circle class="chakra-halo" cx="200" cy="236" r="10" fill="#27AE60" style="animation-delay:.54s"/>
-          <circle class="chakra-pt"   cx="200" cy="236" r="6.5" fill="#27AE60" style="animation-delay:.54s"/>
-          <circle class="chakra-halo" cx="200" cy="182" r="9" fill="#2E86C1" style="animation-delay:.72s"/>
-          <circle class="chakra-pt"   cx="200" cy="182" r="5.5" fill="#2E86C1" style="animation-delay:.72s"/>
-          <circle class="chakra-halo" cx="200" cy="132" r="9" fill="#5B2C8D" style="animation-delay:.9s"/>
-          <circle class="chakra-pt"   cx="200" cy="132" r="5.5" fill="#5B2C8D" style="animation-delay:.9s"/>
-          <circle class="chakra-halo" cx="200" cy="100" r="11" fill="#8E44AD" style="animation-delay:1.08s"/>
-          <circle class="chakra-pt"   cx="200" cy="100" r="7" fill="#8E44AD" style="animation-delay:1.08s"/>
-        </g>
-
-        <g class="travel-pulse"><circle cx="200" cy="336" r="4.5" fill="#FFF6DC"/></g>
-        <g class="travel-pulse" style="animation-delay:1.45s"><circle cx="200" cy="336" r="3.5" fill="#FFE7F2"/></g>
-
-        <circle class="mote" cx="146" cy="356" r="2.6" fill="#BE8B2C" style="animation-delay:0s"/>
-        <circle class="mote" cx="254" cy="348" r="2.2" fill="#D94C8C" style="animation-delay:1.5s"/>
-        <circle class="mote" cx="176" cy="360" r="2"   fill="#8E44AD" style="animation-delay:2.9s"/>
-        <circle class="mote" cx="232" cy="356" r="2.8" fill="#BE8B2C" style="animation-delay:3.8s"/>
-
-        <path d="M200 396 c-24 0 -44 -13 -50 -28 c15 -8 35 -6 50 5 c15 -11 35 -13 50 -5 c-6 15 -26 28 -50 28 z" fill="#D94C8C" opacity="0.3"/>
-        <path d="M200 400 c-40 0 -74 -15 -84 -32 c25 -11 59 -9 84 7 c25 -16 59 -18 84 -7 c-10 17 -44 32 -84 32 z" fill="#BE8B2C" opacity="0.16"/>
-      </svg>
+      <div class="aura-wrap">
+        <span class="aura-glow"></span>
+        <img src="/images/chakras.png" width="563" height="624" alt="A seated figure with the seven chakras glowing along the central channel">
+      </div>
     </div>
   </div>
 </section>
@@ -278,35 +207,28 @@
     <h2 class="serif-lg" data-i18n="testi.h">What people say afterwards.</h2>
     <p class="rail-hint" data-i18n="testi.hint">Swipe or scroll sideways to see more &rarr;</p>
 
-    <!--
-      TESTIMONIAL SCREENSHOTS
-      Save your WhatsApp screenshots into /images/ as
-      testimonial-1.jpg ... testimonial-5.jpg, then replace each
-      <div class="drop">...</div> with:
-      <img src="/images/testimonial-1.jpg" alt="Client message" loading="lazy">
-      The same five cards appear on the Home, Healings and Workshops pages,
-      so edit all three if you change them.
-    -->
+    <!-- Screenshots live in /images as testimonial-1.jpg ... testimonial-5.jpg.
+         The same five cards appear on Home, Healings and Workshops, so edit all three. -->
     <div class="rail">
       <figure class="t-card">
-        <div class="shot"><div class="drop" data-i18n="shot.1">Screenshot 1<br>add image here</div></div>
-        <figcaption class="who" data-i18n="who.1">First name &middot; City</figcaption>
+        <div class="shot"><img src="/images/testimonial-1.jpg" width="760" height="1093" alt="Message from a client" loading="lazy"></div>
+        <figcaption class="who" data-i18n="who.1">On the meditation shibir</figcaption>
       </figure>
       <figure class="t-card">
-        <div class="shot"><div class="drop" data-i18n="shot.2">Screenshot 2<br>add image here</div></div>
-        <figcaption class="who" data-i18n="who.2">First name &middot; City</figcaption>
+        <div class="shot"><img src="/images/testimonial-2.jpg" width="760" height="1093" alt="Message from a client" loading="lazy"></div>
+        <figcaption class="who" data-i18n="who.2">On the stress relief salt</figcaption>
       </figure>
       <figure class="t-card">
-        <div class="shot"><div class="drop" data-i18n="shot.3">Screenshot 3<br>add image here</div></div>
-        <figcaption class="who" data-i18n="who.3">First name &middot; City</figcaption>
+        <div class="shot"><img src="/images/testimonial-3.jpg" width="760" height="1093" alt="Message from a client" loading="lazy"></div>
+        <figcaption class="who" data-i18n="who.3">On the bath salt</figcaption>
       </figure>
       <figure class="t-card">
-        <div class="shot"><div class="drop" data-i18n="shot.4">Screenshot 4<br>add image here</div></div>
-        <figcaption class="who" data-i18n="who.4">First name &middot; City</figcaption>
+        <div class="shot"><img src="/images/testimonial-4.jpg" width="760" height="1093" alt="Message from a client" loading="lazy"></div>
+        <figcaption class="who" data-i18n="who.4">On healing for stiffness and mobility</figcaption>
       </figure>
       <figure class="t-card">
-        <div class="shot"><div class="drop" data-i18n="shot.5">Screenshot 5<br>add image here</div></div>
-        <figcaption class="who" data-i18n="who.5">First name &middot; City</figcaption>
+        <div class="shot"><img src="/images/testimonial-5.jpg" width="760" height="1093" alt="Message from a client" loading="lazy"></div>
+        <figcaption class="who" data-i18n="who.5">On the sprays and bath salt</figcaption>
       </figure>
     </div>
   </div>
@@ -314,6 +236,7 @@
 
 <section class="banner">
   <div class="wrap-narrow reveal">
+    <img class="banner-lotus" src="/images/lotus.png" width="573" height="613" alt="" loading="lazy">
     <div class="eyebrow centered"><span data-i18n="sec.freetag">Free, every week</span></div>
     <h2 data-i18n="free.h">Sit with us this week.</h2>
     <p data-i18n="free.p">A free guided meditation, open to everyone &mdash; whether you have practised for years or never sat still in your life. The simplest way to feel what this work does before committing to anything.</p>

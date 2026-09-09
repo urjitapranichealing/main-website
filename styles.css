@@ -287,61 +287,41 @@ body.lang-mr .nav a { text-transform: none; letter-spacing: 0.02em; font-size: 1
 .hero-cta { display: flex; flex-direction: column; gap: 0.7rem; }
 
 .hero-aura { margin-top: 2.4rem; display: grid; place-items: center; }
-.hero-aura svg { width: 100%; max-width: 340px; overflow: visible; }
 
+/* ---- hero artwork: a slow breathing aura behind the image ---- */
+.aura-wrap {
+  position: relative;
+  display: grid; place-items: center;
+  width: 100%; max-width: 340px;
+}
+.aura-wrap img { position: relative; z-index: 1; width: 100%; animation: driftUp 7s ease-in-out infinite; }
+.aura-glow {
+  position: absolute;
+  left: 50%; top: 52%;
+  width: 108%; aspect-ratio: 1;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(217,76,140,0.30) 0%, rgba(229,190,104,0.22) 42%, rgba(251,246,239,0) 68%);
+  animation: breathe 5.5s ease-in-out infinite;
+  z-index: 0;
+}
 @keyframes breathe {
-  0%, 100% { transform: scale(0.94); opacity: 0.5; }
-  50%      { transform: scale(1.08); opacity: 1; }
+  0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.65; }
+  50%      { transform: translate(-50%, -50%) scale(1.06); opacity: 1; }
 }
-@keyframes ripple {
-  0%   { transform: scale(0.35); opacity: 0; }
-  18%  { opacity: 0.75; }
-  100% { transform: scale(1.5); opacity: 0; }
+@keyframes driftUp {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
 }
-@keyframes spin-slow { to { transform: rotate(360deg); } }
-@keyframes spin-rev  { to { transform: rotate(-360deg); } }
-@keyframes chakraPulse {
-  0%, 100% { transform: scale(0.85); opacity: 0.55; }
-  45%      { transform: scale(1.5);  opacity: 1; }
-}
-@keyframes haloPulse {
-  0%, 100% { transform: scale(0.6); opacity: 0; }
-  40%      { transform: scale(2.1); opacity: 0.55; }
-  70%      { transform: scale(2.6); opacity: 0; }
-}
-@keyframes travel {
-  0%   { transform: translateY(0);      opacity: 0; }
-  10%  { opacity: 1; }
-  88%  { opacity: 1; }
-  100% { transform: translateY(-236px); opacity: 0; }
-}
-@keyframes sweep {
-  0%   { transform: translateY(-16px); opacity: 0; }
-  20%  { opacity: 0.85; }
-  100% { transform: translateY(286px); opacity: 0; }
-}
-@keyframes floatUp {
-  0%   { transform: translateY(0) scale(1);        opacity: 0; }
-  20%  { opacity: 0.9; }
-  100% { transform: translateY(-190px) scale(0.4); opacity: 0; }
-}
-
-.aura-core   { transform-origin: 200px 240px; animation: breathe 4.2s ease-in-out infinite; }
-.aura-rip    { transform-origin: 200px 240px; animation: ripple 3.6s ease-out infinite; }
-.aura-rip--2 { animation-delay: 1.2s; }
-.aura-rip--3 { animation-delay: 2.4s; }
-.dash-ring     { transform-origin: 200px 240px; animation: spin-slow 26s linear infinite; }
-.dash-ring--in { transform-origin: 200px 240px; animation: spin-rev 18s linear infinite; }
-.chakra-pt   { transform-box: fill-box; transform-origin: center; animation: chakraPulse 2.4s ease-in-out infinite; }
-.chakra-halo { transform-box: fill-box; transform-origin: center; animation: haloPulse 2.4s ease-out infinite; }
-.travel-pulse { animation: travel 2.9s ease-in-out infinite; }
-.sweep-band   { animation: sweep 3.4s ease-in-out infinite; }
-.mote         { animation: floatUp 4.6s ease-in infinite; }
-
 @media (prefers-reduced-motion: reduce) {
-  .aura-core, .aura-rip, .dash-ring, .dash-ring--in, .chakra-pt,
-  .chakra-halo, .travel-pulse, .sweep-band, .mote { animation: none !important; }
-  .chakra-pt { opacity: 1; }
+  .aura-glow, .aura-wrap img { animation: none !important; }
+}
+
+/* ---- lotus on the free-meditation banner ---- */
+.banner-lotus {
+  width: 132px; height: auto;
+  margin: 0 auto 1.2rem;
+  filter: drop-shadow(0 12px 30px rgba(229,190,104,0.35));
 }
 
 /* ============================================================
@@ -810,6 +790,21 @@ body.nav-open .fab { opacity: 0; pointer-events: none; }
 }
 .shop-card:hover::after { transform: scaleX(1); }
 .shop-card .icon { color: var(--magenta); margin-bottom: 1.1rem; }
+.shop-card.has-photo { padding-top: 0; }
+.shop-photo {
+  margin: -1px -1.5rem 1.4rem;
+  height: 230px;
+  display: grid; place-items: center;
+  background: radial-gradient(ellipse at 50% 60%, #fff 0%, var(--blush) 70%, #EFE2E9 100%);
+  border-bottom: 1px solid var(--line);
+  overflow: hidden;
+}
+.shop-photo img {
+  max-height: 200px; width: auto; max-width: 88%;
+  object-fit: contain;
+  transition: transform 0.7s var(--ease);
+}
+.shop-card:hover .shop-photo img { transform: scale(1.05); }
 .shop-card h3 { font-size: 1.35rem; margin-bottom: 0.4rem; }
 .shop-card p { font-size: 0.95rem; color: var(--ink-soft); flex: 1; margin-bottom: 1.2rem; }
 
@@ -931,7 +926,8 @@ body.nav-open .fab { opacity: 0; pointer-events: none; }
   .hero .lead { max-width: 46ch; }
   .hero-inner { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 4rem; align-items: center; }
   .hero-aura { margin-top: 0; }
-  .hero-aura svg { max-width: 440px; }
+  .aura-wrap { max-width: 430px; }
+  .banner-lotus { width: 165px; }
 
   .impact { padding: 4rem 0 3.5rem; }
   .impact-item .k { font-size: 3.4rem; }
@@ -939,6 +935,8 @@ body.nav-open .fab { opacity: 0; pointer-events: none; }
   .pillars { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .shop-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
   .shop-card { padding: 2.4rem 2rem; }
+  .shop-card.has-photo { padding-top: 0; }
+  .shop-photo { margin: -1px -2rem 1.6rem; height: 250px; }
   .pillar { padding: 2.4rem 2rem; }
   .team-grid { grid-template-columns: repeat(3, 1fr); gap: 1.8rem; }
   .benefit-grid { grid-template-columns: repeat(3, 1fr); }
