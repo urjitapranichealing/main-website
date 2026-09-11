@@ -3,8 +3,8 @@
    Edit the three constants below; nothing else needs touching.
    ============================================================ */
 const WHATSAPP_NUMBER = '918446339272';                 // country code + number, no + or spaces
-const PHONE_DISPLAY   = '+91 84463 39272';
-const SHOP_URL        = 'https://shop.urjitapranichealing.com';
+const PHONE_DISPLAY   = '+91 8446 339 272';
+const SHOP_URL        = 'https://pages.razorpay.com/stores/urjitapranichealing';
 
 /* ============================================================
    MARATHI DICTIONARY
