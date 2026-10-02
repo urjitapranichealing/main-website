@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Website manager | Urjita</title>
+<link rel="icon" href="/images/urjita-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#FBF6EF; --blush:#F7E6EE; --ink:#2A1520; --soft:#5C4451;
+    --magenta:#B2185F; --magenta-d:#8A0F48; --plum:#3A0B26; --gold:#BE8B2C; --gold-l:#E5BE68;
+    --line:rgba(190,139,44,.32); --ok:#1E7B4D; --warn:#A65A00; --bad:#B42318;
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:16px/1.55 'Jost',system-ui,sans-serif; }
+  h1,h2,h3 { font-family:'Fraunces',Georgia,serif; font-weight:500; margin:0; line-height:1.2; }
+  button, input, textarea, select { font:inherit; color:inherit; }
+  img { max-width:100%; display:block; }
+  .wrap { width:min(960px, calc(100% - 2rem)); margin:0 auto; }
+  [hidden] { display:none !important; }
+
+  /* ---------- login ---------- */
+  .login { min-height:100vh; display:grid; place-items:center; padding:2rem 1rem;
+    background: radial-gradient(ellipse at 20% 0%, #F7E6EE, transparent 60%), var(--paper); }
+  .login-card { width:min(380px,100%); background:#fff; border:1px solid var(--line); padding:2.2rem 1.8rem; text-align:center; }
+  .login-card img { height:88px; width:auto; margin:0 auto 1.2rem; }
+  .login-card h1 { font-size:1.5rem; margin-bottom:.3rem; }
+  .login-card p { color:var(--soft); margin:0 0 1.4rem; font-size:.95rem; }
+
+  /* ---------- top bar ---------- */
+  .bar { position:sticky; top:0; z-index:20; background:#fff; border-bottom:1px solid var(--line); }
+  .bar .wrap { display:flex; align-items:center; gap:.8rem; min-height:64px; }
+  .bar img { height:40px; width:auto; }
+  .bar h1 { font-size:1.1rem; flex:1; }
+  .bar a { color:var(--soft); font-size:.88rem; }
+
+  .tabs { display:flex; gap:.4rem; margin:1.4rem 0 1rem; }
+  .tab { flex:1; padding:.85rem; border:1px solid var(--line); background:#fff; cursor:pointer; font-weight:500; border-radius:10px; }
+  .tab.on { background:var(--magenta); color:#fff; border-color:var(--magenta); }
+
+  /* ---------- controls ---------- */
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:.4rem; border:1px solid var(--magenta);
+    background:var(--magenta); color:#fff; padding:.8rem 1.3rem; border-radius:100px; cursor:pointer; font-weight:500; text-decoration:none; }
+  .btn:hover { background:var(--magenta-d); }
+  .btn:disabled { opacity:.55; cursor:wait; }
+  .btn.ghost { background:#fff; color:var(--magenta); }
+  .btn.ghost:hover { background:var(--blush); }
+  .btn.small { padding:.5rem .9rem; font-size:.88rem; }
+  .btn.danger { background:#fff; color:var(--bad); border-color:#E7B4AF; }
+  .btn.danger:hover { background:#FDECEA; }
+  .btn.wide { width:100%; }
+  .row { display:flex; gap:.6rem; flex-wrap:wrap; align-items:center; }
+
+  label.f { display:block; font-weight:500; margin:1.1rem 0 .35rem; }
+  label.f small { font-weight:400; color:var(--soft); }
+  input[type=text], input[type=date], input[type=url], input[type=password], textarea {
+    width:100%; padding:.8rem .9rem; border:1px solid var(--line); background:#fff; border-radius:8px; font-size:16px; }
+  input:focus, textarea:focus { outline:none; border-color:var(--magenta); box-shadow:0 0 0 3px rgba(178,24,95,.12); }
+  textarea { min-height:130px; resize:vertical; }
+  .hint { font-size:.85rem; color:var(--soft); margin-top:.3rem; }
+
+  /* ---------- the upcoming/past pill ---------- */
+  .pill { display:inline-flex; border:1px solid var(--line); border-radius:100px; overflow:hidden; background:#fff; }
+  .pill button { border:0; background:transparent; padding:.55rem 1rem; cursor:pointer; font-weight:500; color:var(--soft); }
+  .pill button.on.up { background:var(--ok); color:#fff; }
+  .pill button.on.past { background:var(--plum); color:#fff; }
+  .pill.small button { padding:.4rem .75rem; font-size:.85rem; }
+
+  /* ---------- panels ---------- */
+  .card { background:#fff; border:1px solid var(--line); padding:1.4rem; border-radius:12px; }
+  .panel-head { display:flex; justify-content:space-between; align-items:center; gap:1rem; margin-bottom:1rem; flex-wrap:wrap; }
+  .panel-head h2 { font-size:1.4rem; }
+  .group-title { margin:2rem 0 .8rem; font-size:1.05rem; font-family:'Jost',sans-serif; font-weight:500;
+    text-transform:uppercase; letter-spacing:.12em; color:var(--gold); }
+  .empty { padding:1.4rem; border:1px dashed var(--line); text-align:center; color:var(--soft); border-radius:12px; background:#fff; }
+
+  .ev { display:grid; grid-template-columns:72px 1fr; gap:.9rem; padding:1rem; background:#fff; border:1px solid var(--line); border-radius:12px; margin-bottom:.7rem; }
+  .ev .thumb { width:72px; height:72px; border-radius:8px; object-fit:cover; background:var(--blush); }
+  .ev .ph { width:72px; height:72px; border-radius:8px; background:linear-gradient(135deg,var(--blush),#EFE2E9); display:grid; place-items:center; color:var(--gold); font-size:1.4rem; }
+  .ev h3 { font-size:1.08rem; margin-bottom:.15rem; }
+  .ev .meta { font-size:.88rem; color:var(--soft); }
+  .ev .acts { grid-column:1 / -1; display:flex; gap:.5rem; flex-wrap:wrap; align-items:center; justify-content:space-between; }
+  .nudge { grid-column:1 / -1; background:#FFF6E5; border:1px solid #F2D49B; color:var(--warn); padding:.6rem .8rem; border-radius:8px; font-size:.88rem; display:flex; gap:.6rem; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+
+  .photo-pick { display:flex; gap:1rem; align-items:center; flex-wrap:wrap; }
+  .photo-pick .preview { width:150px; aspect-ratio:4/3; border-radius:8px; object-fit:cover; background:var(--blush); border:1px solid var(--line); }
+  .photo-pick .preview.none { display:grid; place-items:center; color:var(--soft); font-size:.85rem; }
+  details.mr { margin-top:1.2rem; border:1px solid var(--line); border-radius:8px; padding:.8rem 1rem; background:var(--paper); }
+  details.mr summary { cursor:pointer; font-weight:500; }
+
+  /* ---------- gallery ---------- */
+  .count { font-family:'Fraunces',serif; font-size:1.3rem; color:var(--magenta); }
+  .grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(200px,1fr)); gap:.9rem; }
+  .ph-card { background:#fff; border:1px solid var(--line); border-radius:12px; overflow:hidden; display:flex; flex-direction:column; }
+  .ph-card img { aspect-ratio:4/3; object-fit:cover; width:100%; background:var(--blush); }
+  .ph-card .in { padding:.7rem; display:flex; flex-direction:column; gap:.5rem; }
+  .ph-card input { padding:.55rem .7rem; font-size:15px; }
+  .ph-card .row { justify-content:space-between; }
+  .num { font-size:.8rem; color:var(--soft); }
+
+  /* ---------- toast + busy ---------- */
+  .toast { position:fixed; left:50%; bottom:20px; transform:translateX(-50%) translateY(140%); background:var(--ink); color:#fff;
+    padding:.8rem 1.2rem; border-radius:10px; transition:transform .35s ease; z-index:50; max-width:calc(100% - 2rem); text-align:center; }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+  .toast.bad { background:var(--bad); }
+  .busy { position:fixed; inset:0; background:rgba(251,246,239,.7); display:grid; place-items:center; z-index:40; }
+  .spin { width:42px; height:42px; border-radius:50%; border:3px solid var(--line); border-top-color:var(--magenta); animation:sp 0.9s linear infinite; }
+  @keyframes sp { to { transform:rotate(360deg); } }
+  .busy p { margin-top:1rem; color:var(--soft); text-align:center; }
+
+  footer.help { margin:3rem 0 2rem; font-size:.88rem; color:var(--soft); border-top:1px solid var(--line); padding-top:1rem; }
+  @media (min-width:700px) {
+    .ev { grid-template-columns:96px 1fr auto; align-items:center; }
+    .ev .thumb, .ev .ph { width:96px; height:72px; }
+    .ev .acts { grid-column:auto; justify-content:flex-end; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ================= LOGIN ================= -->
+<section class="login" id="login-screen" hidden>
+  <form class="login-card" id="login-form">
+    <img src="/images/urjita-logo.png" alt="Urjita">
+    <h1>Website manager</h1>
+    <p>Log in to add events and gallery photos.</p>
+    <input type="password" id="pw" placeholder="Password" autocomplete="current-password" required>
+    <button class="btn wide" style="margin-top:1rem" type="submit">Log in</button>
+    <p class="hint" id="login-msg" style="margin-top:1rem; color:var(--bad)"></p>
+  </form>
+</section>
+
+<!-- ================= DASHBOARD ================= -->
+<div id="app" hidden>
+  <header class="bar">
+    <div class="wrap">
+      <img src="/images/urjita-logo.png" alt="">
+      <h1>Website manager</h1>
+      <a href="/" target="_blank" rel="noopener">View site ↗</a>
+      <button class="btn ghost small" id="logout">Log out</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="tabs">
+      <button class="tab on" data-tab="events">Events</button>
+      <button class="tab" data-tab="gallery">Gallery</button>
+    </div>
+
+    <!-- ---------- EVENTS ---------- -->
+    <section id="tab-events">
+      <div class="panel-head">
+        <h2>Events</h2>
+        <button class="btn" id="new-event">+ Add a new event</button>
+      </div>
+
+      <form class="card" id="event-form" hidden>
+        <h2 id="form-title" style="font-size:1.3rem">New event</h2>
+
+        <label class="f" for="e-title">Event name <small>(required)</small></label>
+        <input type="text" id="e-title" maxlength="140" placeholder="e.g. Full Moon Group Meditation" required>
+
+        <div class="row" style="align-items:flex-start">
+          <div style="flex:1; min-width:180px">
+            <label class="f" for="e-date">Date <small>(required)</small></label>
+            <input type="date" id="e-date" required>
+          </div>
+          <div style="flex:1; min-width:180px">
+            <label class="f" for="e-time">Time</label>
+            <input type="text" id="e-time" maxlength="60" placeholder="e.g. 7:00 pm – 8:30 pm">
+          </div>
+        </div>
+
+        <label class="f" for="e-venue">Place</label>
+        <input type="text" id="e-venue" maxlength="140" placeholder="e.g. Urjita Kendra, or Online on Zoom">
+
+        <label class="f" for="e-location">Area / city</label>
+        <input type="text" id="e-location" maxlength="140" placeholder="e.g. Badlapur East">
+
+        <label class="f" for="e-desc">About the event</label>
+        <textarea id="e-desc" maxlength="3000" placeholder="What will happen, who it is for, what to bring…"></textarea>
+        <p class="hint">Press Enter for a new line — it will show the same way on the website.</p>
+
+        <label class="f">Photo</label>
+        <div class="photo-pick">
+          <div class="preview none" id="e-preview">No photo</div>
+          <div class="row">
+            <label class="btn ghost small" for="e-photo" style="margin:0">Choose photo</label>
+            <input type="file" id="e-photo" accept="image/*" hidden>
+            <button type="button" class="btn danger small" id="e-photo-remove" hidden>Remove photo</button>
+          </div>
+        </div>
+
+        <label class="f" for="e-link">Registration or more-info link <small>(optional)</small></label>
+        <input type="url" id="e-link" maxlength="400" placeholder="https://…">
+        <p class="hint">Leave empty and visitors get a WhatsApp button instead.</p>
+
+        <label class="f">Show this event under</label>
+        <div class="pill" id="e-status">
+          <button type="button" class="up on" data-v="upcoming">Upcoming</button>
+          <button type="button" class="past" data-v="past">Past</button>
+        </div>
+
+        <details class="mr">
+          <summary>Marathi version <small style="font-weight:400">(optional)</small></summary>
+          <label class="f" for="e-title-mr">Event name in Marathi</label>
+          <input type="text" id="e-title-mr" maxlength="140">
+          <label class="f" for="e-desc-mr">About the event, in Marathi</label>
+          <textarea id="e-desc-mr" maxlength="3000"></textarea>
+          <p class="hint">Visitors who switch to मराठी see this. If empty, they see the English.</p>
+        </details>
+
+        <div class="row" style="margin-top:1.6rem">
+          <button class="btn" type="submit" id="save-event">Save event</button>
+          <button class="btn ghost" type="button" id="cancel-event">Cancel</button>
+        </div>
+      </form>
+
+      <h3 class="group-title">Upcoming <span id="n-up"></span></h3>
+      <div id="list-up"></div>
+
+      <h3 class="group-title">Past <span id="n-past"></span></h3>
+      <div id="list-past"></div>
+    </section>
+
+    <!-- ---------- GALLERY ---------- -->
+    <section id="tab-gallery" hidden>
+      <div class="panel-head">
+        <div>
+          <h2>Home page gallery</h2>
+          <p class="hint" style="margin:.2rem 0 0">Up to 15 photos. They appear in this order on the home page.</p>
+        </div>
+        <div class="row">
+          <span class="count" id="g-count">0 / 15</span>
+          <label class="btn" for="g-files" id="g-add">+ Add photos</label>
+          <input type="file" id="g-files" accept="image/*" multiple hidden>
+        </div>
+      </div>
+      <div class="grid" id="g-grid"></div>
+    </section>
+
+    <footer class="help">
+      Changes appear on the website within about a minute. Photos are resized automatically before upload, so phone photos are fine.
+    </footer>
+  </main>
+</div>
+
+<div class="busy" id="busy" hidden><div><div class="spin" style="margin:0 auto"></div><p id="busy-msg">Saving…</p></div></div>
+<div class="toast" id="toast"></div>
+
+<script src="/admin.js"></script>
+</body>
+</html>

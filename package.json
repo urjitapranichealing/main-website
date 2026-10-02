@@ -1,0 +1,9 @@
+{
+  "name": "urjita-website",
+  "private": true,
+  "type": "module",
+  "description": "Urjita Pranic Upchar Kendra website, with a small admin for events and gallery.",
+  "dependencies": {
+    "@vercel/blob": ">=1.1.0"
+  }
+}

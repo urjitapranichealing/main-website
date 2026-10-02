@@ -3,8 +3,8 @@
    Edit the three constants below; nothing else needs touching.
    ============================================================ */
 const WHATSAPP_NUMBER = '918446339272';                 // country code + number, no + or spaces
-const PHONE_DISPLAY   = '+91 8446 339 272';
-const SHOP_URL        = 'https://pages.razorpay.com/stores/urjitapranichealing';
+const PHONE_DISPLAY   = '+91 84463 39272';
+const SHOP_URL        = 'https://shop.urjitapranichealing.com';
 
 /* ============================================================
    MARATHI DICTIONARY
@@ -41,7 +41,7 @@ const MR = {
   'imp.1': 'ऊर्जा उपचार दिले',
   'imp.2': 'सत्रे घेतली, ऑनलाइन व प्रत्यक्ष',
   'imp.3': 'सुपर ब्रेन योग प्रकल्पातून तीन महिन्यांत पोहोचलेले विद्यार्थी व शिक्षक',
-  'imp.cred': '२०१४ पासून सराव · MCKS प्रमाणित प्रशिक्षक · समुपदेशन मानसशास्त्रात पदव्युत्तर',
+  'imp.cred': '२०१४ पासून सराव · MCKS अधिकृत प्रशिक्षक · समुपदेशन मानसशास्त्रात पदव्युत्तर',
 
   /* ---------- what is pranic healing ---------- */
   'sec.what': 'प्राणिक हीलिंग म्हणजे काय',
@@ -78,7 +78,7 @@ const MR = {
   'team.h': 'तीन साधक, एकच साधना.',
   'm1.name': 'क्षिप्रा लोकरे',
   'm1.role': 'प्राणिक हीलिंग प्रशिक्षक · समुपदेशक मानसशास्त्रज्ञ',
-  'm1.bio': 'समुपदेशन मानसशास्त्रात पदव्युत्तर पदवी असलेल्या प्रमाणित MCKS प्रशिक्षक. २०१४ पासून सराव, आणि मुले व त्यांच्या पालकांसाठी प्राणिक सायकोथेरपीमध्ये विशेष प्रावीण्य.',
+  'm1.bio': 'समुपदेशन मानसशास्त्रात पदव्युत्तर पदवी असलेल्या अधिकृत MCKS प्रशिक्षक. २०१४ पासून सराव, आणि मुले व त्यांच्या पालकांसाठी प्राणिक सायकोथेरपीमध्ये विशेष प्रावीण्य.',
   'm2.name': 'क्षितिज लोकरे',
   'm2.role': 'प्राणिक हीलिंग प्रॅक्टिशनर',
   'm2.bio': 'अ‍ॅडव्हान्स्ड प्राणिक हीलिंग, प्राणिक सायकोथेरपी, क्रिस्टल हीलिंग, क्रियाशक्ती आणि अर्हाटिक योगाचे प्रशिक्षण. वैयक्तिक, सामूहिक आणि ऑनलाइन सत्रे घेतात.',
@@ -117,24 +117,21 @@ const MR = {
   'foot.policies': 'गोपनीयता, अटी व परतावा धोरण',
 
   /* ---------- about page ---------- */
-  'ab.h1': 'तीन साधक, ',
-  'ab.h2': 'एकच साधना.',
-  'ab.lead': 'एक मानसशास्त्रज्ञ, एक साधक आणि पंचवीस वर्षांच्या शिक्षिका — एकाच MCKS पद्धतीतून, बदलापूर पूर्व आणि डोंबिवली पूर्व येथून.',
   'about.role': 'MCKS प्राणिक हीलिंग प्रशिक्षक · असोसिएट सर्टिफाइड प्राणिक हीलर · समुपदेशक मानसशास्त्रज्ञ',
   'ab.p1': 'क्षिप्रा या कामाकडे मनाच्या वाटेने आल्या. २०१२ मध्ये मानसशास्त्र शिकताना त्यांना प्राणिक हीलिंग भेटले — आणि पुस्तकांनी अनुत्तरित ठेवलेल्या प्रश्नाचे उत्तर मिळाले: सारखीच काळजी घेऊनही काही लोक बरे होतात आणि काही का होत नाहीत.',
   'ab.p2': '२०१४ पर्यंत त्यांचा सराव गांभीर्याने सुरू झाला. प्राणिक सायकोथेरपीमुळे मुलांपर्यंत आणि त्यांच्या पालकांपर्यंत पोहोचण्याचा असा मार्ग मिळाला जो केवळ संभाषणातून शक्य नव्हता. ज्या मुलांना आपले दुःख शब्दांत मांडता येत नव्हते ती शांत होऊ लागली. असहाय पालकांना काहीतरी करण्यासारखे मिळाले.',
-  'ab.p3': 'आज त्या उपचारही करतात आणि शिकवतातही — प्रमाणित MCKS प्रशिक्षक म्हणून इतरांना प्रशिक्षण देत, आणि दोन्ही केंद्रांतून एकास-एक सत्रे सुरू ठेवत.',
+  'ab.p3': 'आज त्या उपचारही करतात आणि शिकवतातही — अधिकृत MCKS प्रशिक्षक म्हणून इतरांना प्रशिक्षण देत, आणि दोन्ही केंद्रांतून एकास-एक सत्रे सुरू ठेवत.',
   'ab.qual': 'शैक्षणिक पात्रता',
   'ab.q1': 'समुपदेशन मानसशास्त्रात पदव्युत्तर पदवी (M.A.)',
   'ab.q2': 'शालेय मानसशास्त्रात पदव्युत्तर पदविका',
   'ab.q3': 'असोसिएट सर्टिफाइड प्राणिक हीलर',
-  'ab.q4': 'प्रमाणित प्रशिक्षक, MCKS बेसिक प्राणिक हीलिंग',
+  'ab.q4': 'अधिकृत प्रशिक्षक, MCKS बेसिक प्राणिक हीलिंग',
   'tl.1': 'मानसशास्त्र शिकताना प्राणिक हीलिंगशी परिचय.',
   'tl.2': 'व्यावसायिकरित्या प्राणिक हीलिंगचा सराव सुरू.',
   'tl.4y': 'प्राणिक सायकोथेरपी',
   'tl.4': 'लहान मुले आणि त्यांच्या पालकांसाठी विशेष कार्य.',
   'tl.5y': 'आज',
-  'tl.5': 'प्रमाणित MCKS प्रशिक्षक म्हणून बेसिक प्राणिक हीलिंग अभ्यासक्रमाचे अध्यापन.',
+  'tl.5': 'अधिकृत MCKS प्रशिक्षक म्हणून बेसिक प्राणिक हीलिंग अभ्यासक्रमाचे अध्यापन.',
 
   'k2.role': 'प्राणिक हीलिंग प्रॅक्टिशनर',
   'k2.p1': 'क्षितिज मूलभूत प्रोटोकॉलपासून अर्हाटिक योगापर्यंत संपूर्ण MCKS पद्धतीत सराव करतात. ते वैयक्तिक व सामूहिक सत्रे, मार्गदर्शित ध्यान कार्यक्रम आणि ऑनलाइन सामूहिक हीलिंग घेतात, तसेच समाजाभिमुख हीलिंग उपक्रमांत सहभागी होतात.',
@@ -164,11 +161,7 @@ const MR = {
   'k3.s1': 'वर्षे योग अध्यापन',
   'k3.s2': 'वर्षे अ‍ॅक्युप्रेशर',
   'k3.s3': 'वर्षे ऊर्जा-उपचार',
-
-  'sec.lineage': 'परंपरा',
   'gm.h': 'ग्रँड मास्टर चोआ कोक सुई',
-  'gm.p1': 'आधुनिक प्राणिक हीलिंगची स्थापना ग्रँड मास्टर चोआ कोक सुई यांनी केली. त्यांनी योगाचे प्राचीन ज्ञान एका व्यावहारिक, सुसूत्र पद्धतीत रूपांतरित केले. ऊर्जाशरीर आणि चक्रे संतुलित केल्याने आरोग्य, स्वास्थ्य आणि समृद्धीला आधार मिळतो हे त्यांच्या संशोधनाने दाखवले.',
-  'gm.p2': 'उर्जिता येथे शिकवले जाणारे सर्व काही MCKS पद्धतीनुसार जसेच्या तसे आहे — कोणताही बदल किंवा सौम्यीकरण नाही.',
   'gm.q': 'तुमच्या शरीरात स्वतःला बरे करण्याची अद्भुत नैसर्गिक क्षमता आहे. प्राणिक हीलिंग फक्त तीच क्षमता जागृत करते आणि वाढवते.',
   'gm.qa': 'मूलभूत तत्त्व',
   'sec.begin': 'सुरुवात',
@@ -212,7 +205,7 @@ const MR = {
   'wk.lead': 'घरात एक हीलर असला की बरेच काही बदलते. मध्यरात्रीचा ताप, परीक्षेचा ताण, न मिटणारा वाद — अपॉइंटमेंटची वाट न पाहता तुमच्याकडे लगेच देण्यासारखे काहीतरी असते.',
   'wk.flag': 'प्रमुख अभ्यासक्रम',
   'wk.c1h': 'MCKS बेसिक प्राणिक हीलिंग',
-  'wk.c1p1': 'संपूर्ण MCKS पद्धतीचा पायाभूत अभ्यासक्रम, प्रमाणित प्रशिक्षकाकडून. ऊर्जाशरीर स्कॅन करणे, अडलेली ऊर्जा दूर करणे, क्षीण केंद्रांना ऊर्जा देणे आणि सामान्य आजारांसाठी प्रोटोकॉल वापरणे तुम्ही शिकता.',
+  'wk.c1p1': 'संपूर्ण MCKS पद्धतीचा पायाभूत अभ्यासक्रम, अधिकृत प्रशिक्षकाकडून. ऊर्जाशरीर स्कॅन करणे, अडलेली ऊर्जा दूर करणे, क्षीण केंद्रांना ऊर्जा देणे आणि सामान्य आजारांसाठी प्रोटोकॉल वापरणे तुम्ही शिकता.',
   'wk.c1p2': 'पूर्वानुभवाची गरज नाही आणि काहीही केवळ श्रद्धेवर स्वीकारावे लागत नाही — पहिल्या दिवसापासून एकमेकांवर सराव करता आणि विश्वास ठेवायला सांगण्याआधीच ते काम करताना जाणवते.',
   'wk.q': 'अभ्यासक्रमाचा हेतू तुम्हाला हीलरवर अवलंबून ठेवणे नाही. तुम्हालाच हीलर बनवणे आहे.',
   'wk.qa': 'क्षिप्रा लोकरे',
@@ -313,6 +306,39 @@ const MR = {
   'sh.bh': 'सर्व काही, एकाच ठिकाणी.',
   'sh.bp': 'संपूर्ण श्रेणी, सध्याच्या किमती आणि संपूर्ण भारतात डिलिव्हरी.',
   'sh.bcta': 'दुकानाला भेट द्या',
+
+  /* ---------- added: brand, events, gallery, founder ---------- */
+  'hero.brand': 'उर्जिता प्राणिक उपचार केंद्र',
+  'nav.events': 'कार्यक्रम',
+  'sec.events': 'आगामी कार्यक्रम',
+  'evh.h': 'आमच्यासोबत सहभागी व्हा.',
+  'evh.all': 'सर्व कार्यक्रम पहा →',
+  'ev.loading': 'कार्यक्रम येत आहेत…',
+  'ev.upt': 'आगामी',
+  'ev.pastt': 'झालेले कार्यक्रम',
+  'sec.eventsall': 'कार्यक्रम',
+  'evp.h1': 'मेळावे, अभ्यासक्रम ',
+  'evp.h2': 'आणि सत्रे.',
+  'evp.lead': 'पौर्णिमा व अमावस्येचे ध्यान, प्राणिक हीलिंग अभ्यासक्रम, हीलिंग शिबिरे आणि व्याख्याने. एकदा या — बहुतेक कार्यक्रम अगदी नवशिक्यांसाठीही खुले असतात.',
+  'evp.uh': 'पुढे काय आहे.',
+  'evp.ph': 'आम्ही कुठे कुठे होतो.',
+  'sec.gallery': 'उर्जितातील क्षण',
+  'gal.h': 'आमच्या मेळाव्यांची एक झलक.',
+  'gal.hint': 'पाहण्यासाठी सरकवा · मोठा पाहण्यासाठी फोटोवर टॅप करा',
+  'sec.aboutus': 'उर्जिताविषयी',
+  'ab2.h1': 'परंपरा, ',
+  'ab2.h2': 'आणि माणसे.',
+  'ab2.lead': 'ग्रँड मास्टर चोआ कोक सुई यांनी मांडल्याप्रमाणेच प्राणिक हीलिंग — बदलापूर पूर्व आणि डोंबिवली पूर्व येथे तीन साधकांकडून शिकवले व केले जाणारे.',
+  'sec.founder': 'संस्थापक',
+  'gm.role': 'आधुनिक प्राणिक हीलिंग आणि अर्हाटिक योगाचे संस्थापक',
+  'gm.s1': 'पहिले पुस्तक',
+  'gm.s2': 'भाषा',
+  'gm.s3': 'देश',
+  'gm.b1': 'ग्रँड मास्टर चोआ कोक सुई हे चिनी वंशाचे फिलिपिनो होते — शिक्षणाने केमिकल इंजिनिअर, आणि व्यवसायाने उद्योजक व समाजसेवी. या कामकाजासोबतच त्यांनी वीसहून अधिक वर्षे प्राणावर — शरीराला जिवंत ठेवणाऱ्या जीवनऊर्जेवर — संशोधन आणि प्रयोग केले.',
+  'gm.b2': 'ऊर्जा-उपचाराला अंधश्रद्धा आणि गूढ विधींच्या जगातून बाहेर काढून, कोणीही शिकू शकेल आणि स्वतः तपासून पाहू शकेल अशी स्पष्ट, सुसूत्र पद्धत बनवणे हे त्यांचे ध्येय होते. म्हणूनच त्यांचे विद्यार्थी त्यांना आत्म्याचे वैज्ञानिक म्हणत.',
+  'gm.b3': '१९८७ मध्ये त्यांनी ही पद्धत आपल्या पहिल्या पुस्तकात मांडली — <em>The Ancient Science and Art of Pranic Healing</em>, जे पुढे <em>Miracles Through Pranic Healing</em> या नावाने प्रसिद्ध झाले. त्यात टप्प्याटप्प्याने उपचार-पद्धती दिल्या होत्या, आणि अकरा प्रमुख चक्रांचे पहिले सार्वजनिक वर्णन होते.',
+  'gm.b4': 'फिलिपिन्समधून ही शिकवण जगभर पोहोचली — त्यांची पुस्तके, त्यांचे विद्यार्थी आणि त्यांच्या नावाने शिकवण्यासाठी त्यांनी तयार केलेले प्रशिक्षक यांच्यामार्फत. <em>Miracles Through Pranic Healing</em> चा आज ३० हून अधिक भाषांत अनुवाद झाला आहे, आणि प्राणिक हीलिंग १२० हून अधिक देशांत केले जाते — घरांत, हीलिंग केंद्रांत, आणि काही ठिकाणी शैक्षणिक संस्था व वैद्यकीय महाविद्यालयांतही.',
+  'gm.b5': 'त्यांनी अर्हाटिक योगाचीही स्थापना केली — साधनेत पुढे जाऊ इच्छिणाऱ्यांसाठीची प्रगत आध्यात्मिक पद्धत. उर्जितातील प्रत्येक अभ्यासक्रम आणि प्रत्येक उपचार त्यांनी मांडलेल्या MCKS पद्धतीनुसारच होतो — कोणताही बदल नाही, कोणतेही सौम्यीकरण नाही.',
 
   /* ---------- policies ---------- */
   'sec.legal': 'कायदेशीर',
@@ -419,6 +445,7 @@ function setLang(lang) {
   });
 
   try { localStorage.setItem('urjita-lang', lang); } catch (e) {}
+  document.dispatchEvent(new CustomEvent('urjita:lang', { detail: lang }));
 }
 
 /* ============================================================
@@ -577,3 +604,308 @@ document.addEventListener('DOMContentLoaded', () => {
   const yr = document.getElementById('yr');
   if (yr) yr.textContent = new Date().getFullYear();
 });
+
+/* ============================================================
+   EVENTS + GALLERY  (content managed from /admin)
+   ============================================================ */
+(function () {
+  'use strict';
+
+  const UI = {
+    en: {
+      upcoming: 'Upcoming', past: 'Past event',
+      register: 'Register', ask: 'Ask about this',
+      more: 'Read more', less: 'Show less',
+      emptyHome: 'No events announced just yet. New dates reach our WhatsApp list first.',
+      emptyUp: 'Nothing scheduled right now. New dates will appear here — or reach you first on WhatsApp if you ask to be added.',
+      emptyPast: 'Past events will appear here.',
+      getUpdates: 'Get the updates',
+      waAsk: (t, d) => `Hello Urjita, I would like to know more about "${t}" on ${d}.`,
+      waUpdates: 'Hello Urjita, please add me to the updates list for upcoming events.',
+      close: 'Close', prev: 'Previous photo', next: 'Next photo',
+    },
+    mr: {
+      upcoming: 'आगामी', past: 'झालेला कार्यक्रम',
+      register: 'नोंदणी करा', ask: 'याविषयी विचारा',
+      more: 'अधिक वाचा', less: 'कमी दाखवा',
+      emptyHome: 'अजून कोणताही कार्यक्रम जाहीर झालेला नाही. नवीन तारखा आधी आमच्या व्हॉट्सॲप यादीवर येतात.',
+      emptyUp: 'सध्या कोणताही कार्यक्रम ठरलेला नाही. नवीन तारखा इथे दिसतील — किंवा यादीत नाव नोंदवल्यास आधी व्हॉट्सॲपवर येतील.',
+      emptyPast: 'झालेले कार्यक्रम इथे दिसतील.',
+      getUpdates: 'अपडेट्स मिळवा',
+      waAsk: (t, d) => `नमस्कार उर्जिता, मला ${d} रोजीच्या "${t}" विषयी अधिक माहिती हवी आहे.`,
+      waUpdates: 'नमस्कार उर्जिता, कृपया आगामी कार्यक्रमांच्या अपडेट्स यादीत माझे नाव नोंदवा.',
+      close: 'बंद करा', prev: 'मागील फोटो', next: 'पुढील फोटो',
+    },
+  };
+
+  const lang = () => (document.body.classList.contains('lang-mr') ? 'mr' : 'en');
+  const t = () => UI[lang()];
+  const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c =>
+    ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const safeUrl = u => (/^https?:\/\//i.test(u || '') ? u : '');
+  const wa = msg => 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+
+  function fmt(iso, opts) {
+    const d = new Date(iso + 'T00:00:00');
+    if (isNaN(d)) return iso;
+    try { return new Intl.DateTimeFormat(lang() === 'mr' ? 'mr-IN' : 'en-IN', opts).format(d); }
+    catch (e) { return d.toDateString(); }
+  }
+
+  const ICON_CAL = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>';
+  const ICON_PIN = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>';
+
+  /* ---------------- events ---------------- */
+  let eventData = null;
+
+  function card(ev) {
+    const mr = lang() === 'mr';
+    const isPast = ev.status === 'past';
+    const title = (mr && ev.title_mr) || ev.title;
+    const desc = (mr && ev.description_mr) || ev.description || '';
+    const longDate = fmt(ev.date, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const where = [ev.venue, ev.location].filter(Boolean).join(', ');
+    const link = safeUrl(ev.link);
+    const photo = ev.image
+      ? `<img src="${esc(ev.image)}" alt="" loading="lazy">`
+      : '<div class="ev-ph"><img src="/images/lotus.png" alt="" loading="lazy"></div>';
+    const long = desc.length > 220 || desc.split('\n').length > 4;
+
+    return `
+      <article class="ev-card${isPast ? ' is-past' : ''}">
+        <div class="ev-photo">
+          ${photo}
+          <div class="ev-date"><b>${esc(fmt(ev.date, { day: 'numeric' }))}</b><span>${esc(fmt(ev.date, { month: 'short' }))}</span></div>
+        </div>
+        <div class="ev-body">
+          <span class="ev-tag">${esc(isPast ? t().past : t().upcoming)}</span>
+          <h3>${esc(title)}</h3>
+          <ul class="ev-meta">
+            <li>${ICON_CAL}<span>${esc(longDate)}${ev.time ? ' · ' + esc(ev.time) : ''}</span></li>
+            ${where ? `<li>${ICON_PIN}<span>${esc(where)}</span></li>` : ''}
+          </ul>
+          ${desc ? `<div class="ev-desc${long ? ' clamp' : ''}"><p>${esc(desc).replace(/\n/g, '<br>')}</p></div>` : ''}
+          ${desc && long ? `<button type="button" class="ev-more">${esc(t().more)}</button>` : ''}
+          ${isPast ? '' : `<div class="ev-actions">
+            ${link ? `<a class="btn" href="${esc(link)}" target="_blank" rel="noopener">${esc(t().register)}</a>` : ''}
+            <a class="btn ${link ? 'btn-ghost' : ''}" href="${esc(wa(t().waAsk(title, longDate)))}" target="_blank" rel="noopener">${esc(t().ask)}</a>
+          </div>`}
+        </div>
+      </article>`;
+  }
+
+  function emptyState(kind, which) {
+    if (which === 'past') return `<p class="ev-empty">${esc(t().emptyPast)}</p>`;
+    const msg = kind === 'home' ? t().emptyHome : t().emptyUp;
+    return `<div class="ev-empty"><p>${esc(msg)}</p>
+      <a class="btn btn-ghost" href="${esc(wa(t().waUpdates))}" target="_blank" rel="noopener">${esc(t().getUpdates)}</a></div>`;
+  }
+
+  function renderEvents() {
+    if (!eventData) return;
+    document.querySelectorAll('[data-events]').forEach(box => {
+      const which = box.dataset.events === 'past' ? 'past' : 'upcoming';
+      let list = eventData[which] || [];
+      const limit = parseInt(box.dataset.limit, 10);
+      if (limit) list = list.slice(0, limit);
+      box.classList.toggle('is-empty', !list.length);
+      box.innerHTML = list.length ? list.map(card).join('') : emptyState(box.dataset.empty, which);
+    });
+  }
+
+  async function loadEvents() {
+    if (!document.querySelector('[data-events]')) return;
+    try {
+      const res = await fetch('/api/events', { headers: { Accept: 'application/json' } });
+      eventData = res.ok ? await res.json() : { upcoming: [], past: [] };
+    } catch (e) {
+      eventData = { upcoming: [], past: [] };
+    }
+    renderEvents();
+  }
+
+  document.addEventListener('click', e => {
+    const b = e.target.closest('.ev-more');
+    if (!b) return;
+    const d = b.previousElementSibling;
+    const open = d.classList.toggle('open');
+    b.textContent = open ? t().less : t().more;
+  });
+
+  /* ---------------- gallery slider ---------------- */
+  let photos = [];
+  let lbIndex = 0;
+
+  function initGallery() {
+    const sec = document.getElementById('gallery');
+    if (!sec) return;
+    fetch('/api/gallery')
+      .then(r => (r.ok ? r.json() : { photos: [] }))
+      .catch(() => ({ photos: [] }))
+      .then(data => {
+        photos = (data.photos || []).filter(p => safeUrl(p.url));
+        if (!photos.length) return;                       // stays hidden until the first photo is added
+        sec.hidden = false;
+        buildSlider(sec);
+      });
+  }
+
+  function buildSlider(sec) {
+    const track = sec.querySelector('.gal-track');
+    const dots = sec.querySelector('.gal-dots');
+    const cur = sec.querySelector('.gal-cur');
+    sec.querySelector('.gal-tot').textContent = String(photos.length).padStart(2, '0');
+
+    track.innerHTML = photos.map((p, i) => `
+      <figure class="gal-slide" data-i="${i}">
+        <img src="${esc(p.url)}" alt="${esc(p.caption || 'Moment at Urjita')}" ${i > 2 ? 'loading="lazy"' : ''} draggable="false">
+        ${p.caption ? `<figcaption>${esc(p.caption)}</figcaption>` : ''}
+      </figure>`).join('');
+    dots.innerHTML = photos.map((_, i) =>
+      `<button type="button" role="tab" aria-label="Photo ${i + 1}" data-i="${i}"></button>`).join('');
+
+    const slides = [...track.children];
+    let active = 0;
+
+    function setActive(i) {
+      active = i;
+      slides.forEach((s, k) => s.classList.toggle('is-active', k === i));
+      [...dots.children].forEach((d, k) => d.setAttribute('aria-selected', String(k === i)));
+      cur.textContent = String(i + 1).padStart(2, '0');
+    }
+    function goTo(i, smooth = true) {
+      i = (i + slides.length) % slides.length;
+      const s = slides[i];
+      track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.clientWidth) / 2, behavior: smooth ? 'smooth' : 'auto' });
+      setActive(i);
+    }
+    function nearest() {
+      const mid = track.scrollLeft + track.clientWidth / 2;
+      let best = 0, dist = Infinity;
+      slides.forEach((s, k) => {
+        const d = Math.abs(s.offsetLeft + s.clientWidth / 2 - mid);
+        if (d < dist) { dist = d; best = k; }
+      });
+      return best;
+    }
+
+    let ticking = false;
+    track.addEventListener('scroll', () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { ticking = false; const n = nearest(); if (n !== active) setActive(n); });
+    }, { passive: true });
+
+    sec.querySelector('.gal-nav.prev').addEventListener('click', () => { stopAuto(); goTo(active - 1); });
+    sec.querySelector('.gal-nav.next').addEventListener('click', () => { stopAuto(); goTo(active + 1); });
+    dots.addEventListener('click', e => { const b = e.target.closest('button'); if (b) { stopAuto(); goTo(+b.dataset.i); } });
+    track.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') { e.preventDefault(); stopAuto(); goTo(active + 1); }
+      if (e.key === 'ArrowLeft') { e.preventDefault(); stopAuto(); goTo(active - 1); }
+    });
+
+    // mouse drag on desktop (touch already swipes natively)
+    let down = false, moved = 0, startX = 0, startLeft = 0;
+    track.addEventListener('pointerdown', e => {
+      if (e.pointerType !== 'mouse') return;
+      down = true; moved = 0; startX = e.clientX; startLeft = track.scrollLeft;
+      track.classList.add('dragging'); stopAuto();
+    });
+    window.addEventListener('pointermove', e => {
+      if (!down) return;
+      moved = Math.max(moved, Math.abs(e.clientX - startX));
+      track.scrollLeft = startLeft - (e.clientX - startX);
+    });
+    window.addEventListener('pointerup', () => {
+      if (!down) return;
+      down = false; track.classList.remove('dragging'); goTo(nearest());
+    });
+
+    track.addEventListener('click', e => {
+      const s = e.target.closest('.gal-slide');
+      if (!s || moved > 6) return;
+      const i = +s.dataset.i;
+      stopAuto();
+      if (i !== active) goTo(i); else openLightbox(i);
+    });
+    ['touchstart', 'wheel'].forEach(ev => track.addEventListener(ev, stopAuto, { passive: true }));
+
+    // gentle autoplay while visible, until the visitor takes over
+    let timer = null, stopped = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function stopAuto() { stopped = true; clearInterval(timer); timer = null; }
+    function startAuto() { if (!stopped && !timer && slides.length > 1) timer = setInterval(() => goTo(active + 1), 4500); }
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(es => es.forEach(en => {
+        if (en.isIntersecting) startAuto(); else { clearInterval(timer); timer = null; }
+      }), { threshold: 0.4 }).observe(sec);
+    }
+    sec.addEventListener('mouseenter', () => { clearInterval(timer); timer = null; });
+    sec.addEventListener('mouseleave', startAuto);
+
+    requestAnimationFrame(() => goTo(0, false));
+    window.addEventListener('resize', () => goTo(active, false));
+  }
+
+  /* ---------------- lightbox ---------------- */
+  function lightbox() {
+    let lb = document.getElementById('lb');
+    if (lb) return lb;
+    lb = document.createElement('div');
+    lb.id = 'lb';
+    lb.className = 'lb';
+    lb.hidden = true;
+    lb.setAttribute('role', 'dialog');
+    lb.setAttribute('aria-modal', 'true');
+    lb.innerHTML = `
+      <button type="button" class="lb-btn lb-x">&times;</button>
+      <button type="button" class="lb-btn lb-prev">&#8249;</button>
+      <figure><img alt=""><figcaption></figcaption></figure>
+      <button type="button" class="lb-btn lb-next">&#8250;</button>`;
+    document.body.appendChild(lb);
+    lb.querySelector('.lb-x').addEventListener('click', closeLightbox);
+    lb.querySelector('.lb-prev').addEventListener('click', () => showLb(lbIndex - 1));
+    lb.querySelector('.lb-next').addEventListener('click', () => showLb(lbIndex + 1));
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    let sx = 0;
+    lb.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+    lb.addEventListener('touchend', e => {
+      const dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 50) showLb(lbIndex + (dx < 0 ? 1 : -1));
+    });
+    document.addEventListener('keydown', e => {
+      if (lb.hidden) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowRight') showLb(lbIndex + 1);
+      if (e.key === 'ArrowLeft') showLb(lbIndex - 1);
+    });
+    return lb;
+  }
+  function showLb(i) {
+    const lb = lightbox();
+    lbIndex = (i + photos.length) % photos.length;
+    const p = photos[lbIndex];
+    lb.querySelector('img').src = p.url;
+    lb.querySelector('img').alt = p.caption || '';
+    lb.querySelector('figcaption').textContent = p.caption || '';
+    lb.querySelector('.lb-x').setAttribute('aria-label', t().close);
+    lb.querySelector('.lb-prev').setAttribute('aria-label', t().prev);
+    lb.querySelector('.lb-next').setAttribute('aria-label', t().next);
+  }
+  function openLightbox(i) {
+    const lb = lightbox();
+    showLb(i);
+    lb.hidden = false;
+    document.body.style.overflow = 'hidden';
+    lb.querySelector('.lb-x').focus();
+  }
+  function closeLightbox() {
+    const lb = document.getElementById('lb');
+    if (!lb) return;
+    lb.hidden = true;
+    document.body.style.overflow = '';
+  }
+
+  /* ---------------- start ---------------- */
+  document.addEventListener('DOMContentLoaded', () => { loadEvents(); initGallery(); });
+  document.addEventListener('urjita:lang', renderEvents);
+})();

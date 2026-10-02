@@ -69,7 +69,28 @@ Preview locally with `npx vercel dev` — it mimics production including clean U
 
 **Map pins.** In `contact.html`, replace the two "Get directions" links with your exact Google Maps share links.
 
+## ONE-TIME SETUP for the events & gallery dashboard (do this or /admin will not work)
+
+1. **Upload everything** in this folder to GitHub, including the new `api/` folder, `package.json`, `admin.html`, `admin.js`, `events.html` and `robots.txt`.
+2. **Create the storage.** Vercel -> your project -> **Storage** -> **Create** -> **Blob** -> set access to **Public** (important — Private will not work) -> create it and connect it to this project.
+3. **Set the password.** Vercel -> project -> **Settings -> Environment Variables** -> add `ADMIN_PASSWORD` with a long password (12+ characters). Tick Production and Preview.
+4. **Redeploy** (Deployments -> latest -> ⋯ -> Redeploy). Environment variables only apply after a redeploy.
+5. Open **yoursite.com/admin** and log in.
+
+To change the password later, edit `ADMIN_PASSWORD` and redeploy — everyone logged in is logged out.
+
 ## What changed in this round
+
+- **Hero** now shows "Urjita Pranic Upchar Kendra" above the headline.
+- **About** opens with Grand Master Choa Kok Sui: how he built Pranic Healing, the 1987 book, and its spread to 120+ countries and 30+ languages. Then Kshipra, Kshitij and Madhavi.
+- **"Know more about Pranic Healing"** goes to the founder section on About.
+- **"Certified instructor" -> "Authorised instructor"** everywhere, English and Marathi. "Associate Certified Pranic Healer" is a separate credential and was left as is.
+- **New Events page** (`/events`) with Upcoming and Past, plus an events section on the home page showing the next three.
+- **Admin dashboard** at `/admin`: add/edit/delete events with photo, date, time, place, area, description, optional registration link and optional Marathi text; a pill switches each event between Upcoming and Past; events whose date has passed get a "Move to Past" reminder.
+- **Gallery** on the home page: up to 15 photos uploaded from the same dashboard, swipeable slider, tap to enlarge. It stays hidden until the first photo is added.
+- **Home page order:** hero -> numbers -> what Pranic Healing is -> what we offer -> upcoming events -> team -> what people notice -> testimonials -> gallery -> free meditation invitation.
+
+## Earlier changes
 
 **Logo — the white patch is gone.** The old cut-out judged transparency by brightness, so the bright yellow centre of the gold mark got treated as background and punched a hole through it. The new version flood-fills only the white that is *connected to the outside edge*, so enclosed light areas inside the artwork are left alone. The gold now reads solid from tip to tip.
 
