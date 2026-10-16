@@ -69,6 +69,17 @@ Preview locally with `npx vercel dev` — it mimics production including clean U
 
 **Map pins.** In `contact.html`, replace the two "Get directions" links with your exact Google Maps share links.
 
+## Changing phone numbers, email, WhatsApp or store links
+
+Open **`config.js`** — every page reads from it. Change the value between the quotes, keep the quotes and commas, commit. Nothing else needs editing.
+
+- `whatsapp` — the floating button and all "Ask on WhatsApp" buttons
+- `branches.badlapur` / `branches.dombivli` — phone shown on the site, WhatsApp that receives contact-form enquiries for that centre, and the "Get directions" map link
+- `shop.store` — the Razorpay store every shop button opens
+- `shop.categories` — paste a category page link to send just that button there; leave `''` to use the main store
+
+Kshitij's personal number and email on his profile are deliberately **not** in config, so changing the Dombivli number never changes his profile.
+
 ## ONE-TIME SETUP for the events & gallery dashboard (do this or /admin will not work)
 
 1. **Upload everything** in this folder to GitHub, including the new `api/` folder, `package.json`, `admin.html`, `admin.js`, `events.html` and `robots.txt`.
@@ -80,6 +91,18 @@ Preview locally with `npx vercel dev` — it mimics production including clean U
 To change the password later, edit `ADMIN_PASSWORD` and redeploy — everyone logged in is logged out.
 
 ## What changed in this round
+
+- **Event times are picked from lists** (quarter-hour steps), From and To. Picking a start suggests an end one hour later. Typing a time is no longer possible.
+- **End date** for events that run over more than one day.
+- **Repeating events**: daily, weekly (choose the days), or monthly (same date, or e.g. "third Saturday"); every 1-12 days/weeks/months; ends never, on a date, or after a number of times. The form shows exactly how it will read on the website. The website always shows the next upcoming date.
+- **Google Maps link** per event — the place becomes tappable on the Events page and home page.
+- **Gallery uploads**: each photo gets its own progress bar; nothing goes on the website until you press **Save** (or **Save all**). Caption changes also need **Save caption**. Removing an unsaved photo deletes the upload. The dashboard warns you before leaving with unsaved work.
+- **Shop**: all buttons go to the Razorpay store; Healing Crystals removed; Latest Festive Offers added at the end.
+- **`config.js`** holds every contact detail and store link. Contact-form enquiries now go to the WhatsApp of the centre the visitor picks.
+- The website's look is unchanged.
+
+## Earlier round
+
 
 - **Hero** now shows "Urjita Pranic Upchar Kendra" above the headline.
 - **About** opens with Grand Master Choa Kok Sui: how he built Pranic Healing, the 1987 book, and its spread to 120+ countries and 30+ languages. Then Kshipra, Kshitij and Madhavi.

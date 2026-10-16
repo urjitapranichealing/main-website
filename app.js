@@ -1,10 +1,58 @@
 /* ============================================================
    URJITA — site behaviour
-   Edit the three constants below; nothing else needs touching.
+   Phone numbers, email, WhatsApp and store links live in config.js.
+   Edit them there, not here.
    ============================================================ */
-const WHATSAPP_NUMBER = '918446339272';                 // country code + number, no + or spaces
-const PHONE_DISPLAY   = '+91 84463 39272';
-const SHOP_URL        = 'https://shop.urjitapranichealing.com';
+const CFG = window.URJITA_CONFIG || {};
+const CFG_BRANCHES = CFG.branches || {};
+const WHATSAPP_NUMBER = String(CFG.whatsapp || '918446339272').replace(/\D/g, '');
+const SHOP_URL = (CFG.shop && CFG.shop.store) || 'https://pages.razorpay.com/stores/st_TapC3XQKg05fDv';
+
+const telHref = phone => 'tel:' + String(phone).replace(/[^\d+]/g, '');
+
+function cfgValue(path) {
+  if (path === 'email') return CFG.email;
+  const m = /^phone\.(\w+)$/.exec(path);
+  if (m) return CFG_BRANCHES[m[1]] && CFG_BRANCHES[m[1]].phone;
+  return undefined;
+}
+
+/** Fill every tagged link and mention on the page from config.js. */
+function applyConfig(root) {
+  root = root || document;
+  root.querySelectorAll('[data-cfg-phone]').forEach(a => {
+    const b = CFG_BRANCHES[a.dataset.cfgPhone];
+    if (b && b.phone) { a.href = telHref(b.phone); a.textContent = b.phone; }
+  });
+  root.querySelectorAll('[data-cfg-tel]').forEach(a => {
+    const b = CFG_BRANCHES[a.dataset.cfgTel];
+    if (b && b.phone) a.href = telHref(b.phone);
+  });
+  if (CFG.email) {
+    root.querySelectorAll('[data-cfg-email]').forEach(a => { a.href = 'mailto:' + CFG.email; a.textContent = CFG.email; });
+    root.querySelectorAll('[data-cfg-mail]').forEach(a => { a.href = 'mailto:' + CFG.email; });
+  }
+  if (CFG.instagram && CFG.instagram.url) {
+    root.querySelectorAll('[data-cfg-insta]').forEach(a => {
+      a.href = CFG.instagram.url;
+      if (a.dataset.cfgInsta === 'label' && CFG.instagram.handle) a.textContent = 'Instagram \u00b7 @' + CFG.instagram.handle;
+    });
+  }
+  root.querySelectorAll('[data-cfg-maps]').forEach(a => {
+    const b = CFG_BRANCHES[a.dataset.cfgMaps];
+    if (b && b.maps) a.href = b.maps;
+  });
+  root.querySelectorAll('[data-cfg-text]').forEach(el => {
+    const v = cfgValue(el.dataset.cfgText);
+    if (v) el.textContent = v;
+  });
+  const cats = (CFG.shop && CFG.shop.categories) || {};
+  root.querySelectorAll('[data-shop-link]').forEach(a => {
+    a.href = cats[a.getAttribute('data-shop-link')] || SHOP_URL;
+    a.target = '_blank';
+    a.rel = 'noopener';
+  });
+}
 
 /* ============================================================
    MARATHI DICTIONARY
@@ -274,7 +322,7 @@ const MR = {
   'f.msg': 'तुम्हाला काय सांगायचे आहे?',
   'f.msgPh': 'तुमच्याच शब्दांत — सांगण्याचा चुकीचा मार्ग नाही.',
   'f.send': 'माझा संदेश घेऊन व्हॉट्सॲप उघडा',
-  'f.alt': 'ईमेल पसंत आहे? urjitapranichealing@gmail.com वर लिहा',
+  'f.alt': 'ईमेल पसंत आहे? <span data-cfg-text="email">urjitapranichealing@gmail.com</span> वर लिहा',
   'sec.note': 'लिहिण्याआधी',
   'ct.nh': 'योग्य शब्दांची गरज नाही.',
   'ct.np': 'संपर्क करणाऱ्या बहुतेकांना नेमके काय मागायचे हे माहीत नसते, आणि ते ठीक आहे. तुम्हाला काय त्रास होतो आहे ते सांगा; पुढचे आम्ही पाहू — आणि दुसरे काही अधिक योग्य वाटले तर प्रामाणिकपणे तसे सांगू.',
@@ -293,15 +341,16 @@ const MR = {
   'sh.2p': 'जेव्हा स्नान शक्य नसते तेव्हासाठी. गर्दीच्या ट्रेननंतर, कठीण बैठकीनंतर किंवा रुग्णालयाच्या भेटीनंतर स्वतःभोवती दोन-चार फवारे.',
   'sh.3h': 'वास्तु शुद्धी स्प्रे',
   'sh.3p': 'माणसांसाठी नव्हे, जागांसाठी. जड वाटणारे कोपरे, मंदावलेले दुकान, आजारपणानंतरचे घर किंवा हवा त्यापेक्षा जास्त वेळ रेंगाळलेला वाद.',
-  'sh.4h': 'हीलिंग क्रिस्टल्स',
-  'sh.4p': 'घर आणि कार्यालयासाठी सर्व आकारांत — टेबलावर किंवा उशाशी ठेवण्याच्या लहान तुकड्यांपासून स्वागतकक्ष किंवा देवघरासाठीच्या मोठ्या क्लस्टरपर्यंत. जागा सांगा, आम्ही योग्य पर्याय सुचवू.',
   'sh.5h': 'क्रिस्टल ज्वेलरी',
   'sh.5p': 'दिवसभर घालता येतील अशी ब्रेसलेट, पेंडंट आणि माळा. कोणाला काही सांगायचे नसताना काहीतरी सोबत ठेवण्याचा सर्वात सौम्य मार्ग.',
   'sh.6h': 'काय घ्यावे हे ठरत नाही?',
   'sh.6p': 'आम्हाला संदेश पाठवा आणि परिस्थिती सांगा — कोणती जागा, कोणती व्यक्ती, काय चालले आहे. उपयोगी पडणारी एक वस्तू सुचवणे आम्हाला जास्त आवडेल, न पडणाऱ्या पाच विकण्यापेक्षा.',
   'sh.ask': 'आधी आम्हाला विचारा',
   'sh.noteh': 'आम्ही कसे काम करतो.',
-  'sh.notep': ' उत्पादने ही तुमच्या साधनेला आधार आहेत, तिला पर्याय नाहीत, आणि यांपैकी कोणतेही कोणत्याही आजारावर उपचार करत नाही. पाठवण्याआधी प्रत्येक वस्तू शुद्ध करून ऊर्जित केली जाते. ऑर्डर, किंमत, पेमेंट आणि डिलिव्हरी आमच्या shop.urjitapranichealing.com या दुकानातून होते.',
+  'sh.notep': ' उत्पादने ही तुमच्या साधनेला आधार आहेत, तिला पर्याय नाहीत, आणि यांपैकी कोणतेही कोणत्याही आजारावर उपचार करत नाही. पाठवण्याआधी प्रत्येक वस्तू शुद्ध करून ऊर्जित केली जाते. ऑर्डर, किंमत, पेमेंट आणि डिलिव्हरी आमच्या ऑनलाइन दुकानातून होते.',
+  'sh.7h': 'नवीन सणासुदीच्या ऑफर्स',
+  'sh.7p': 'प्रत्येक सणासाठी नव्याने तयार केलेले गिफ्ट सेट्स आणि सणासुदीच्या ऑफर्स — दिवाळी, नवरात्र, मकर संक्रांत आणि बरेच काही. ज्यांना थोड्या हलकेपणाची गरज आहे त्यांच्यासाठी एक विचारपूर्वक भेट.',
+  'sh.7cta': 'या सणाच्या ऑफर्स पहा',
   'sec.store': 'दुकान',
   'sh.bh': 'सर्व काही, एकाच ठिकाणी.',
   'sh.bp': 'संपूर्ण श्रेणी, सध्याच्या किमती आणि संपूर्ण भारतात डिलिव्हरी.',
@@ -367,7 +416,7 @@ const MR = {
   'pv.6h': 'अभिप्राय व छायाचित्रे',
   'pv.6p': 'क्लायंटचे संदेश आणि छायाचित्रे आम्ही केवळ परवानगीनेच प्रसिद्ध करतो, आणि तुम्ही वेगळे मान्य केले नसेल तर ओळख पटवणारे तपशील काढून टाकतो. काही हटवायचे असल्यास सांगा, आम्ही हटवू.',
   'pv.7h': 'तुमचे अधिकार',
-  'pv.7p': 'आमच्याकडे तुमच्याविषयी काय आहे ते विचारणे, ते दुरुस्त करून घेणे, व्हॉट्सॲप यादीतून नाव काढणे किंवा नोंदी हटवण्यास सांगणे — हे तुम्ही कधीही करू शकता. urjitapranichealing@gmail.com वर लिहा.',
+  'pv.7p': 'आमच्याकडे तुमच्याविषयी काय आहे ते विचारणे, ते दुरुस्त करून घेणे, व्हॉट्सॲप यादीतून नाव काढणे किंवा नोंदी हटवण्यास सांगणे — हे तुम्ही कधीही करू शकता. <span data-cfg-text="email">urjitapranichealing@gmail.com</span> वर लिहा.',
   'pv.8h': 'मुले',
   'pv.8p': '१८ वर्षांखालील कोणासाठीही उपचार पालक किंवा पालकत्व असलेल्या व्यक्तीमार्फतच ठरवले जातात, आणि ती व्यक्ती उपस्थित किंवा माहितगार असते. आम्ही मुलांकडून थेट माहिती गोळा करत नाही.',
 
@@ -411,7 +460,7 @@ const MR = {
   'rf.5h': 'वेलनेस उत्पादने',
   'rf.5p': 'उत्पादने आमच्या स्वतंत्र ऑनलाइन दुकानातून विकली जातात, ज्याचे स्वतःचे परतावा धोरण आहे. प्रत्यक्ष आमच्याकडून घेतलेली न उघडलेली उत्पादने मूळ स्थितीत सात दिवसांत बदलून मिळू शकतात. स्वच्छतेच्या कारणास्तव उघडलेले बाथ सॉल्ट व स्प्रे परत घेतले जात नाहीत.',
   'rf.6h': 'परतावा कसा मिळतो',
-  'rf.6p': 'मंजूर परतावा तुम्ही ज्या मार्गाने पैसे भरले त्याच मार्गाने, साधारणपणे सात ते दहा कामकाजाच्या दिवसांत परत केला जातो. यासाठी +९१ ८४४६३ ३९२७२ वर संदेश पाठवा किंवा urjitapranichealing@gmail.com वर तुमचे नाव, बुकिंगची तारीख आणि तुमची विनंती लिहा.'
+  'rf.6p': 'मंजूर परतावा तुम्ही ज्या मार्गाने पैसे भरले त्याच मार्गाने, साधारणपणे सात ते दहा कामकाजाच्या दिवसांत परत केला जातो. यासाठी <span data-cfg-text="phone.badlapur">+91 84463 39272</span> वर संदेश पाठवा किंवा <span data-cfg-text="email">urjitapranichealing@gmail.com</span> वर तुमचे नाव, बुकिंगची तारीख आणि तुमची विनंती लिहा.'
 };
 
 /* ============================================================
@@ -445,14 +494,16 @@ function setLang(lang) {
   });
 
   try { localStorage.setItem('urjita-lang', lang); } catch (e) {}
+  applyConfig(document);
   document.dispatchEvent(new CustomEvent('urjita:lang', { detail: lang }));
 }
 
 /* ============================================================
    WHATSAPP
    ============================================================ */
-function waLink(msg) {
-  return 'https://wa.me/' + WHATSAPP_NUMBER + '?text=' + encodeURIComponent(msg);
+function waLink(msg, number) {
+  const to = String(number || WHATSAPP_NUMBER).replace(/\D/g, '');
+  return 'https://wa.me/' + to + '?text=' + encodeURIComponent(msg);
 }
 
 function wireWhatsApp() {
@@ -485,7 +536,11 @@ function wireWhatsApp() {
       'Preferred centre: ' + val('f-where') + '\n\n' +
       (val('f-msg').trim() || '(no additional details)');
 
-    window.open(waLink(msg), '_blank', 'noopener');
+    // Badlapur -> Badlapur's WhatsApp, Dombivli -> Dombivli's, distant healing -> the main number
+    const where = document.getElementById('f-where');
+    const branch = where ? ['badlapur', 'dombivli'][where.selectedIndex] : null;
+    const to = branch && CFG_BRANCHES[branch] && CFG_BRANCHES[branch].whatsapp;
+    window.open(waLink(msg, to), '_blank', 'noopener');
   });
 }
 
@@ -510,6 +565,7 @@ function countUp(el) {
    INIT
    ============================================================ */
 document.addEventListener('DOMContentLoaded', () => {
+  applyConfig(document);
   cacheEnglish();
 
   let saved = 'en';
@@ -520,7 +576,6 @@ document.addEventListener('DOMContentLoaded', () => {
     b.addEventListener('click', () => setLang(b.dataset.lang));
   });
 
-  document.querySelectorAll('[data-shop-link]').forEach(a => a.setAttribute('href', SHOP_URL));
 
   wireWhatsApp();
 
@@ -623,6 +678,7 @@ document.addEventListener('DOMContentLoaded', () => {
       waAsk: (t, d) => `Hello Urjita, I would like to know more about "${t}" on ${d}.`,
       waUpdates: 'Hello Urjita, please add me to the updates list for upcoming events.',
       close: 'Close', prev: 'Previous photo', next: 'Next photo',
+      nextOn: 'Next:', map: 'Open in Google Maps',
     },
     mr: {
       upcoming: 'आगामी', past: 'झालेला कार्यक्रम',
@@ -635,6 +691,7 @@ document.addEventListener('DOMContentLoaded', () => {
       waAsk: (t, d) => `नमस्कार उर्जिता, मला ${d} रोजीच्या "${t}" विषयी अधिक माहिती हवी आहे.`,
       waUpdates: 'नमस्कार उर्जिता, कृपया आगामी कार्यक्रमांच्या अपडेट्स यादीत माझे नाव नोंदवा.',
       close: 'बंद करा', prev: 'मागील फोटो', next: 'पुढील फोटो',
+      nextOn: 'पुढील:', map: 'Google Maps वर पहा',
     },
   };
 
@@ -658,37 +715,124 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ---------------- events ---------------- */
   let eventData = null;
 
+  const ICON_REPEAT = '<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M17 2l3 3-3 3"/><path d="M4 11V9a4 4 0 0 1 4-4h12"/><path d="M7 22l-3-3 3-3"/><path d="M20 13v2a4 4 0 0 1-4 4H4"/></svg>';
+  const locale = () => (lang() === 'mr' ? 'mr-IN' : 'en-IN');
+
+  function timeLabel(hhmm) {
+    const [h, m] = hhmm.split(':').map(Number);
+    try {
+      return new Intl.DateTimeFormat(locale(), { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'UTC' })
+        .format(new Date(Date.UTC(2000, 0, 1, h, m)));
+    } catch (e) { return hhmm; }
+  }
+
+  function dateLine(ev, shown) {
+    const L = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+    if (ev.endDate && !ev.repeat) {
+      const a = new Date(ev.date + 'T00:00:00'), b = new Date(ev.endDate + 'T00:00:00');
+      try {
+        const f = new Intl.DateTimeFormat(locale(), { weekday: 'short', day: 'numeric', month: 'long', year: 'numeric' });
+        if (f.formatRange) return f.formatRange(a, b);
+      } catch (e) { /* fall through */ }
+      return fmt(ev.date, L) + ' – ' + fmt(ev.endDate, L);
+    }
+    const d = fmt(shown, L);
+    return ev.repeat ? `${t().nextOn} ${d}` : d;
+  }
+
+  function timeText(ev) {
+    if (ev.startTime) return timeLabel(ev.startTime) + (ev.endTime ? ' – ' + timeLabel(ev.endTime) : '');
+    return ev.time || '';   // older events written before the time lists existed
+  }
+
+  function weekday(i, style) {   // i: 0 = Sunday
+    return new Intl.DateTimeFormat(locale(), { weekday: style, timeZone: 'UTC' }).format(new Date(Date.UTC(2026, 0, 4 + i)));
+  }
+  const num = n => new Intl.NumberFormat(locale()).format(n);
+
+  function repeatText(ev) {
+    const r = ev.repeat;
+    if (!r) return '';
+    const mr = lang() === 'mr';
+    const n = r.interval || 1;
+    const start = new Date(ev.date + 'T00:00:00Z');
+    let out = '';
+
+    if (r.freq === 'daily') {
+      out = mr ? (n === 1 ? 'दररोज' : `दर ${num(n)} दिवसांनी`) : (n === 1 ? 'Every day' : `Every ${n} days`);
+    }
+    if (r.freq === 'weekly') {
+      const days = (r.days && r.days.length ? r.days : [start.getUTCDay()]).slice().sort((a, b) => ((a + 6) % 7) - ((b + 6) % 7));
+      if (days.length === 1 && n === 1) {
+        out = mr ? 'दर ' + weekday(days[0], 'long').replace(/वार$/, 'वारी') : 'Every ' + weekday(days[0], 'long');
+      } else {
+        const list = days.map(d => weekday(d, 'short'));
+        const joined = list.length > 1 ? list.slice(0, -1).join(', ') + (mr ? ' व ' : ' & ') + list[list.length - 1] : list[0];
+        out = mr ? (n === 1 ? `दर आठवड्याला ${joined}` : `दर ${num(n)} आठवड्यांनी ${joined}`)
+                 : (n === 1 ? `Every ${joined}` : `Every ${n} weeks on ${joined}`);
+      }
+    }
+    if (r.freq === 'monthly') {
+      const every = mr ? (n === 1 ? 'दर महिन्याच्या' : `दर ${num(n)} महिन्यांनी,`) : (n === 1 ? 'Every month on the' : `Every ${n} months on the`);
+      if (r.monthMode === 'weekday') {
+        const nth = Math.ceil(start.getUTCDate() / 7);
+        const wd = weekday(start.getUTCDay(), 'long');
+        out = mr
+          ? `${every} ${['पहिल्या', 'दुसऱ्या', 'तिसऱ्या', 'चौथ्या', 'शेवटच्या'][Math.min(nth, 5) - 1]} ${wd.replace(/वार$/, 'वारी')}`
+          : `${every} ${['first', 'second', 'third', 'fourth', 'last'][Math.min(nth, 5) - 1]} ${wd}`;
+      } else {
+        const d = start.getUTCDate();
+        const suf = (d % 10 === 1 && d !== 11) ? 'st' : (d % 10 === 2 && d !== 12) ? 'nd' : (d % 10 === 3 && d !== 13) ? 'rd' : 'th';
+        out = mr ? `${every} ${num(d)} तारखेला` : `${every} ${d}${suf}`;
+      }
+    }
+    if (r.ends === 'on' && r.until) {
+      const u = fmt(r.until, { day: 'numeric', month: 'short', year: 'numeric' });
+      out += mr ? `, ${u} पर्यंत` : `, until ${u}`;
+    }
+    if (r.ends === 'after' && r.count) out += mr ? `, एकूण ${num(r.count)} सत्रे` : `, ${r.count} sessions`;
+    return out;
+  }
+
   function card(ev) {
     const mr = lang() === 'mr';
     const isPast = ev.status === 'past';
     const title = (mr && ev.title_mr) || ev.title;
     const desc = (mr && ev.description_mr) || ev.description || '';
-    const longDate = fmt(ev.date, { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+    const shown = ev.next || ev.last || ev.date;          // a series shows its next session
+    const when = dateLine(ev, shown);
+    const time = timeText(ev);
+    const repeat = repeatText(ev);
     const where = [ev.venue, ev.location].filter(Boolean).join(', ');
+    const map = safeUrl(ev.mapLink);
     const link = safeUrl(ev.link);
     const photo = ev.image
       ? `<img src="${esc(ev.image)}" alt="" loading="lazy">`
       : '<div class="ev-ph"><img src="/images/lotus.png" alt="" loading="lazy"></div>';
     const long = desc.length > 220 || desc.split('\n').length > 4;
+    const place = where
+      ? (map ? `<a href="${esc(map)}" target="_blank" rel="noopener">${esc(where)} &#8599;</a>` : esc(where))
+      : (map ? `<a href="${esc(map)}" target="_blank" rel="noopener">${esc(t().map)} &#8599;</a>` : '');
 
     return `
       <article class="ev-card${isPast ? ' is-past' : ''}">
         <div class="ev-photo">
           ${photo}
-          <div class="ev-date"><b>${esc(fmt(ev.date, { day: 'numeric' }))}</b><span>${esc(fmt(ev.date, { month: 'short' }))}</span></div>
+          <div class="ev-date"><b>${esc(fmt(shown, { day: 'numeric' }))}</b><span>${esc(fmt(shown, { month: 'short' }))}</span></div>
         </div>
         <div class="ev-body">
           <span class="ev-tag">${esc(isPast ? t().past : t().upcoming)}</span>
           <h3>${esc(title)}</h3>
           <ul class="ev-meta">
-            <li>${ICON_CAL}<span>${esc(longDate)}${ev.time ? ' · ' + esc(ev.time) : ''}</span></li>
-            ${where ? `<li>${ICON_PIN}<span>${esc(where)}</span></li>` : ''}
+            <li>${ICON_CAL}<span>${esc(when)}${time ? ' · ' + esc(time) : ''}</span></li>
+            ${repeat ? `<li>${ICON_REPEAT}<span>${esc(repeat)}</span></li>` : ''}
+            ${place ? `<li>${ICON_PIN}<span>${place}</span></li>` : ''}
           </ul>
           ${desc ? `<div class="ev-desc${long ? ' clamp' : ''}"><p>${esc(desc).replace(/\n/g, '<br>')}</p></div>` : ''}
           ${desc && long ? `<button type="button" class="ev-more">${esc(t().more)}</button>` : ''}
           ${isPast ? '' : `<div class="ev-actions">
             ${link ? `<a class="btn" href="${esc(link)}" target="_blank" rel="noopener">${esc(t().register)}</a>` : ''}
-            <a class="btn ${link ? 'btn-ghost' : ''}" href="${esc(wa(t().waAsk(title, longDate)))}" target="_blank" rel="noopener">${esc(t().ask)}</a>
+            <a class="btn ${link ? 'btn-ghost' : ''}" href="${esc(wa(t().waAsk(title, fmt(shown, { day: 'numeric', month: 'long', year: 'numeric' }))))}" target="_blank" rel="noopener">${esc(t().ask)}</a>
           </div>`}
         </div>
       </article>`;

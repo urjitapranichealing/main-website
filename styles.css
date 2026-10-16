@@ -1207,3 +1207,7 @@ body.lang-mr .founder .role-line { text-transform: none; letter-spacing: 0.02em;
   .nav { gap: 1.6rem; }
   .nav a { font-size: 0.75rem; letter-spacing: 0.13em; }
 }
+
+/* event card: the place becomes a Google Maps link when one is given */
+.ev-meta a { color: inherit; text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; }
+.ev-meta a:hover { color: var(--magenta); }

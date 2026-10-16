@@ -1,16 +1,15 @@
 // ADMIN: manage events
-//   GET                       -> { events }
-//   POST   { event, imageData }               create
-//   PUT    { id, event, imageData, removeImage }  update
-//   PATCH  { id, status }                      move between upcoming / past
-//   DELETE ?id=...                             delete
+//   GET                                                   -> { events }   (with next / ended worked out)
+//   POST   { event, imageUrl }                            create
+//   PUT    { id, event, imageUrl, removeImage }           update
+//   PATCH  { id, status }                                 move between upcoming / past
+//   DELETE ?id=...                                        delete
 import crypto from 'node:crypto';
 import { route, HttpError } from '../_lib/http.js';
-import { readJSON, writeJSON, saveImage, removeImage } from '../_lib/store.js';
-import { EVENTS_FILE, normaliseEvent } from '../_lib/events.js';
+import { readJSON, writeJSON, saveImage, removeImage, isOwnedImage } from '../_lib/store.js';
+import { EVENTS_FILE, normaliseEvent, sortedForAdmin, stored } from '../_lib/events.js';
 
-const load = () => readJSON(EVENTS_FILE, []);
-const sorted = all => [...all].sort((a, b) => a.date.localeCompare(b.date));
+const load = async () => (await readJSON(EVENTS_FILE, [])).map(stored);
 
 function find(all, id) {
   const i = all.findIndex(e => e.id === id);
@@ -18,40 +17,51 @@ function find(all, id) {
   return i;
 }
 
+async function photoFrom({ imageUrl, imageData }) {
+  if (imageUrl) {
+    if (!isOwnedImage(imageUrl, 'events')) throw new HttpError(400, 'Please upload the photo again.');
+    return imageUrl;
+  }
+  if (imageData) return saveImage(imageData, 'events');   // older single-step uploads still work
+  return null;
+}
+
 export default route({
   async GET() {
-    return { events: sorted(await load()) };
+    return { events: sortedForAdmin(await load()) };
   },
 
   async POST(req) {
-    const { event, imageData } = req.body || {};
+    const body = req.body || {};
     const all = await load();
-    const ev = normaliseEvent(event);
+    const ev = normaliseEvent(body.event);
     ev.id = crypto.randomUUID();
     ev.createdAt = ev.updatedAt = new Date().toISOString();
-    if (imageData) ev.image = await saveImage(imageData, 'events');
+    const photo = await photoFrom(body);
+    if (photo) ev.image = photo;
     all.push(ev);
     await writeJSON(EVENTS_FILE, all);
-    return { event: ev, events: sorted(all) };
+    return { event: ev, events: sortedForAdmin(all) };
   },
 
   async PUT(req) {
-    const { id, event, imageData, removeImage: dropImage } = req.body || {};
+    const body = req.body || {};
     const all = await load();
-    const i = find(all, id);
+    const i = find(all, body.id);
     const before = all[i];
-    const ev = normaliseEvent(event, before);
+    const ev = normaliseEvent(body.event, before);
     ev.updatedAt = new Date().toISOString();
-    if (imageData) {
-      ev.image = await saveImage(imageData, 'events');
+    const photo = await photoFrom(body);
+    if (photo && photo !== before.image) {
+      ev.image = photo;
       await removeImage(before.image);
-    } else if (dropImage) {
+    } else if (!photo && body.removeImage) {
       await removeImage(before.image);
       delete ev.image;
     }
     all[i] = ev;
     await writeJSON(EVENTS_FILE, all);
-    return { event: ev, events: sorted(all) };
+    return { event: ev, events: sortedForAdmin(all) };
   },
 
   async PATCH(req) {
@@ -61,7 +71,7 @@ export default route({
     all[i].status = status === 'past' ? 'past' : 'upcoming';
     all[i].updatedAt = new Date().toISOString();
     await writeJSON(EVENTS_FILE, all);
-    return { event: all[i], events: sorted(all) };
+    return { event: all[i], events: sortedForAdmin(all) };
   },
 
   async DELETE(req) {
@@ -71,6 +81,6 @@ export default route({
     const [gone] = all.splice(i, 1);
     await writeJSON(EVENTS_FILE, all);
     await removeImage(gone.image);
-    return { events: sorted(all) };
+    return { events: sortedForAdmin(all) };
   },
 }, { admin: true });

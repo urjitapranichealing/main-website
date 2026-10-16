@@ -42,7 +42,15 @@ export async function saveImage(dataUrl, folder) {
   return blob.url;
 }
 
+/** True only for photos this site uploaded into the given folder of its own Blob store. */
+export function isOwnedImage(url, folder) {
+  if (typeof url !== 'string' || url.length > 600) return false;
+  const dev = process.env.URJITA_DEV_BLOB_BASE;           // local testing only; never set on Vercel
+  if (dev && url.startsWith(dev + folder + '/')) return true;
+  return new RegExp('^https://[a-z0-9-]+\\.public\\.blob\\.vercel-storage\\.com/' + folder + '/[^?#\\s]+$', 'i').test(url);
+}
+
 export async function removeImage(url) {
-  if (!url || !/\.blob\.vercel-storage\.com\//.test(url)) return;
+  if (!url || !(isOwnedImage(url, 'events') || isOwnedImage(url, 'gallery'))) return;
   try { await del(url); } catch (e) { console.warn('Could not delete old image', e && e.message); }
 }
