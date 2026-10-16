@@ -47,11 +47,11 @@ window.URJITA_CONFIG = {
 
     /* Paste a category page link between the quotes to send that button straight to it. */
     categories: {
-      'bath-salts':        '',
-      'aura-sprays':       '',
-      'vastu-sprays':      '',
-      'crystal-jewellery': '',
-      'festive-offers':    '',
+      'bath-salts':        'https://pages.razorpay.com/stores/st_TapC3XQKg05fDv?categories=bath_salts',
+      'aura-sprays':       'https://pages.razorpay.com/stores/st_TapC3XQKg05fDv?categories=cleansing_sprays',
+      'vastu-sprays':      'https://pages.razorpay.com/stores/st_TapC3XQKg05fDv?categories=cleansing_sprays',
+      'crystal-jewellery': 'https://pages.razorpay.com/stores/st_TapC3XQKg05fDv?categories=wearing_crystals',
+      'festive-offers':    'https://pages.razorpay.com/stores/st_TapC3XQKg05fDv?categories=diwali_hampers',
     },
   },
 };
